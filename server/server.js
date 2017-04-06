@@ -1,11 +1,17 @@
 const express    = require('express');
 const app        = express();
 const path       = require('path');
+const config     = require('./config');
+const mongoose   = require('mongoose');
+const bodyParser = require('body-parser');
 
-app.use(express.static(path.join('../dist')));
+app.use(express.static(path.join('../public')));
+app.use(bodyParser.json());
 
 app.use(require('./routes'));
 
-app.listen(3000, () => {
-    console.log(`Live at Port ${3000}`);
+mongoose.connect(config.MONGO_URI);
+
+app.listen(config.PORT, () => {
+    console.log(`Live at Port ${config.PORT}`);
 });
