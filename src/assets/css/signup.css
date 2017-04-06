@@ -1,0 +1,29 @@
+.signUp{
+    border-radius: 6px;
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.signUp td{
+    text-align: center;
+    font-weight: bold;
+
+}
+.signUpwrapper{
+    display: flex;
+    justify-content: center;
+    padding:2px;
+    align-items: center;
+    height: 100%;
+}
+.signUpInput{
+    width: 220px;
+    height: 25px;
+
+}
+.sign{
+    font-size: 19px;
+}

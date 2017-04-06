@@ -1,0 +1,199 @@
+body{
+  background-color: RGB(73,73,73);
+  height: auto;
+}
+header{
+    background-color: RGB(41,62,81);
+    overflow: hidden;
+    height: 45px;
+    padding: 0 50px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+    color: white;
+}
+
+.md-button.md-default-theme.md-primary.md-fab,
+.md-button.md-primary.md-fab,
+.md-button.md-default-theme.md-primary.md-raised,
+.md-button.md-primary.md-raised {
+    background-color: #b71d4d;
+}
+
+.md-button.md-default-theme.md-primary.md-fab:not([disabled]).md-focused,
+.md-button.md-primary.md-fab:not([disabled]).md-focused,
+.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover,
+.md-button.md-primary.md-fab:not([disabled]):hover,
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]).md-focused,
+.md-button.md-primary.md-raised:not([disabled]).md-focused,
+.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover,
+.md-button.md-primary.md-raised:not([disabled]):hover {
+    background-color: #c30943;
+}
+
+.form-search {
+    display: flex;
+    padding: 4px;
+}
+.searchInput{
+  width: 150px;
+  height: 25px;
+  color: #333;
+  background-color: #f4f4f4;
+  border: 1px solid #dcdcdc;
+  border-radius: 1px;
+}
+
+
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+.searchButton{
+  background-color: #b71d4d;
+  border-color: #a11a44;
+  -moz-transition: .2s;
+  -o-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  border-radius: 4px;
+  width: 30px;
+  height:31px;
+}
+
+.signInButton{
+
+  width: 70px;
+  height:31px;
+  background-color: #b71d4d;
+  border-color: #a11a44;
+  -moz-transition: .2s;
+  -o-transition: .2s;
+  -webkit-transition: .2s;
+  transition: .2s;
+  border-radius: 4px;
+  color: white;
+}
+.main-wrapper{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: RGB(255,255,255);
+  overflow: hidden;
+  height: 80px;
+  padding: 0 150px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+}
+.content-wrapper{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  padding: 0 70px;
+}
+
+.content-main {
+  flex: 70;
+  margin-right: 30px;
+}
+
+.filter-wrapper {
+  padding: 10px;
+  display: flex;
+  background-color: #b71d4d;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
+}
+
+.filter-wrapper .filter {
+  width: 150px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+
+.movie-preview{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+}
+
+.movie-preview .logo-wrapper{
+  height: 350px;
+  width: 230px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  flex: 20;
+}
+
+.movie-preview .logo-wrapper img {
+  height: inherit;
+  width: inherit;
+}
+
+.movie-preview .content {
+  flex: 80;
+  padding: 10px 0;
+  height: 300px;
+  background-color: white;
+  border-radius: 0 10px 10px 0;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+
+.popular-movies-wrapper {
+  border-radius: 5px;
+  flex: 25;
+  background-color: white;
+  height: auto;
+  background-color: #b71d4d;
+  padding: 1px;
+}
+
+.popular-movies-wrapper .title{
+  padding: 5px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+  border-radius: 5px 5px 0 0;
+  height: 30px;
+}
+
+.logo-panel {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.logo-panel .border-line {
+  border: 1px solid white;
+  width: 200px;
+}
+
+.logo-panel .border-line .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popular-movies-wrapper .popular-list{
+  background-color: white;
+}
+.popular-movies-wrapper .popular-list li{
+  padding: 10px 20px;
+  border-bottom: 1px solid rgb(169, 169, 169);
+}
+
+.popular-movies-wrapper .popular-list li:last-child{
+  border-bottom: none;
+}

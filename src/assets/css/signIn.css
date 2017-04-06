@@ -1,0 +1,55 @@
+.signInWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nameUser {
+    display: flex;
+    padding: 5px;
+}
+
+.passwordUser {
+    display: flex;
+    padding: 5px;
+}
+
+.inputUser {
+    width: 160px;
+    height: 25px;
+}
+
+.InputButtonWrapper {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.inputButton {
+    width: 110px;
+    height: 25px;
+    background-color: #b71d4d;
+    border-color: #a11a44;
+    border-radius: 4px;
+}
+
+.linkSignUpWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.linkA {
+    text-decoration: none;
+    color: #b71d4d;
+}
+
+.linkSignUp {
+    display: flex;
+    padding: 9px;
+}
+
+.linkA:hover {
+    text-decoration: underline;
+}

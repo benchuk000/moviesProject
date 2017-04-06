@@ -1,0 +1,48 @@
+<div class="content-wrapper">
+    <div class="content-main">
+        <div class="filter-wrapper">
+            <div class="filter">
+                Дата
+            </div>
+            <div class="filter">
+                Время
+            </div>
+            <div class="filter">
+                Жанр
+            </div>
+        </div>
+
+        <div class="logo-panel">
+            <div class="border-line"></div>
+
+            <div class="logo">
+                <div>
+                    <img src="" alt="">
+                </div>
+                <div>
+                    <div>
+                        СЕЙЧАС В КИНО
+                    </div>
+                    <div>
+                        До скорой встречи!
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-line"></div>
+        </div>
+        <div class="content">
+            <movie-preview ng-repeat="film in [1,2]" film="film"></movie-preview>
+        </div>
+    </div>
+
+    <div class="popular-movies-wrapper">
+        <div class="title">
+            Популярные фильмы
+        </div>
+        <ul class="popular-list">
+            <li>Красавица и чудовище</li>
+            <li>Сплит</li>
+        </ul>
+    </div>
+</div>
