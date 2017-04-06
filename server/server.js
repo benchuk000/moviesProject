@@ -5,7 +5,7 @@ const config     = require('./config');
 const mongoose   = require('mongoose');
 const bodyParser = require('body-parser');
 
-app.use(express.static(path.join('../public')));
+app.use(express.static(path.join(__dirname, '../dist')));
 app.use(bodyParser.json());
 
 app.use(require('./routes'));

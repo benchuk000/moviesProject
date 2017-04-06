@@ -1,5 +1,5 @@
 {
-  "name": "moviesProject",
+  "name": "moviesroject",
   "authors": [
     "olya <ola_klass@mail.ru>"
   ],
@@ -17,6 +17,17 @@
   "dependencies": {
     "angular": "^1.6.3",
     "angular-ui-router": "^0.4.2",
-    "angular-material": "^1.1.3"
+    "angular-material": "^1.1.3",
+    "angular-cookies": "^1.6.0",
+    "jquery": "^3.1.1",
+    "toastr": "^2.1.3",
+    "angular-local-storage": "^0.5.2",
+    "angular-animate": "^1.6.0",
+    "angular-bootstrap": "^2.5.0",
+    "angularjs-slider": "^6.0.0",
+    "angular-ui-grid": "^4.0.2",
+    "angular-material": "^1.1.3",
+    "angular-file-upload": "^2.5.0",
+    "ng-file-upload": "^12.2.13"
   }
 }

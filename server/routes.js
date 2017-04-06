@@ -1,14 +1,15 @@
 const express  = require('express');
 const router   = express.Router();
-const multer  = require('multer')
-const upload = multer({ dest: '../public/music/' });
+const multer   = require('multer')
+const upload   = multer({ dest: '../public/music/' });
+const path     = require('path');
 
 router.use((req, res, next) => {
     console.log(`${req.method}:${req.url}`);
     next();
 });
 
-router.get('/', (req, res) => res.sendFile(__dirname + '/dist/index.html'));
+router.get('/', (req, res) => res.sendFile(path.join(__dirname, '../dist/index.html')));
 
 const auth = require('./controllers/auth');
 router.post('/login', auth.authenticate);

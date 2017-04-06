@@ -1,42 +1,26 @@
 <div class="signUpwrapper">
     <table class="signUp">
         <tr>
-        <td colspan="2" class="sign">
-            Регистрация
-        </td>
+            <td colspan="2" class="sign">
+                Регистрация
+            </td>
         </tr>
         <tr>
             <td>
                 Имя:
             </td>
             <td>
-                <input type="text" class="signUpInput" />
+                <input type="text" class="signUpInput" ng-model="signup.userData.username"/>
             </td>
         </tr>
         <tr>
             <td>
-                Фамилия:
+                Логин:
             </td>
             <td>
-                <input type="text" class="signUpInput" />
+                <input type="text" class="signUpInput" ng-model="signup.userData.login"/>
             </td>
         </tr>
-    </tr>
-    <tr>
-        <td>
-            Страна:
-        </td>
-        <td>
-            <input type="text" class="signUpInput" />
-        </td>
-    </tr>
-        <tr>
-            <td>
-                Город:
-            </td>
-            <td>
-                <input type="text" class="signUpInput" />
-            </td>
         </tr>
 
         <tr>
@@ -44,7 +28,7 @@
                 e-mail:
             </td>
             <td>
-                <input type="text" class="signUpInput" />
+                <input type="text" class="signUpInput" ng-model="signup.userData.email"/>
             </td>
         </tr>
         <tr>
@@ -52,13 +36,13 @@
                 Пароль:
             </td>
             <td>
-                <input type="password" class="signUpInput" />
+                <input type="password" class="signUpInput" ng-model="signup.userData.password"/>
             </td>
         </tr>
         <tr>
 
             <td colspan="2">
-                <md-button class="md-raised md-primary">
+                <md-button class="md-raised md-primary" ng-click="signup.signup()">
                     Регистрация
                 </md-button>
             </td>

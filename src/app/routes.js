@@ -37,6 +37,9 @@ angular.module('bm')
                 parent:       'in.base',
                 url:          'signup',
 
-                templateUrl:  'app/components/SignUp/signUp.html'
+                templateUrl:  'app/components/SignUp/signUp.html',
+
+                controller:   'SignUpController',
+                controllerAs: 'signup'
             });
      }]);

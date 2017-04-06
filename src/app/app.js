@@ -1,4 +1,7 @@
 var app = angular.module('bm', [
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'ngCookies',
+    'LocalStorageModule',
+    'ngFileUpload'
 ]);

@@ -14,11 +14,13 @@
                     {{currentUser.login}}
                 </md-button>
                 <md-menu-content width="4">
-
+                    <md-menu-item>
+                    <md-button ng-click="header.logOut()">Выйти</md-button>
+                </md-menu-item>
                 </md-menu-content>
             </md-menu>
 
-            <md-menu nf-if="!currentUser">
+            <md-menu ng-if="!currentUser">
                 <md-button aria-label="Open phone interactions menu" class="md-button" ng-click="$mdMenu.open()">
                     ВОЙТИ
                 </md-button>
@@ -26,16 +28,16 @@
                     <div class="signInWrapper">
                         <div class=nameUser>
                           <img src="../../assets/img/user_male_6834.png"/>
-                            <input type="text" class="inputUser" name="nameUser" placeholder="Имя пользователя"/>
+                            <input type="text" class="inputUser" ng-model="header.userData.login"  placeholder="Имя пользователя"/>
 
                         </div>
                         <div class="passwordUser">
                         <img src="../../assets/img/kgpg_8241.png"/>
-                            <input type="password" class="inputUser" name="passwordUser" placeholder="Пароль"/>
+                            <input type="password" class="inputUser" ng-model="header.userData.password" placeholder="Пароль"/>
                         </div>
                     </div>
                     <div class="InputButtonWrapper">
-                        <md-button class="md-raised md-primary"/>
+                        <md-button class="md-raised md-primary" ng-click="header.login()">
                             Войти
                         </md-button>
                     </div>
