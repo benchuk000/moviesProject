@@ -85,7 +85,7 @@ exports.updateMovieById = (req, res, next) => {
             let avatarPromise = new Promise((resolve, reject) => {
                 fsp.readFile(avatarFile.path)
                     .then(function (data) {
-                        newAvatarPath = path.join(__dirname, `../../public/assets/img/${avatarFile.originalname}`);
+                        newAvatarPath = path.join(__dirname, `../../dist/assets/img/${avatarFile.originalname}`);
                         return fsp.writeFile(newAvatarPath, data);
                     })
                     .then(function () {
@@ -100,7 +100,7 @@ exports.updateMovieById = (req, res, next) => {
             let moviePromise = new Promise((resolve, reject) => {
                 fsp.readFile(movieFile.path)
                     .then(function (data) {
-                        newMoviePath = path.join(__dirname, `../../public/assets/img/${movieFile.originalname}`);
+                        newMoviePath = path.join(__dirname, `../../dist/assets/img/${movieFile.originalname}`);
                         return fsp.writeFile(newMoviePath, data);
                     })
                     .then(function (){
@@ -113,14 +113,19 @@ exports.updateMovieById = (req, res, next) => {
 
         Promise.all(promisses)
             .then(() => {
-                movie.name = body.name,
-                movie.author = body.author,
+                movie.name = body.name;
+                movie.description = body.description;
+                movie.author = body.author;
                 movie.url = newMoviePath
-                    ? `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/public/', newMoviePath)}`
+                    ? `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newMoviePath)}`
                     : movie.url;
                 movie.avatarUrl = newAvatarPath
-                    ? `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/public/', newAvatarPath)}`
+                    ? `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newAvatarPath)}`
                     : movie.avatarUrl;
+                movie.releaseDate = body.releaseDate;
+                movie.startDate = body.startDate;
+                movie.endDate = body.endDate;
+                movie.cost = body.cost;
 
                 movie.save(function (err) {
                     if (err) {
@@ -161,7 +166,7 @@ exports.createMovie = (req, res, next) => {
 
             fsp.readFile(movieFile.path)
                 .then(function (data) {
-                    newMoviePath = path.join(__dirname, `../../public/music/${movieFile.originalname}`);
+                    newMoviePath = path.join(__dirname, `../../dist/music/${movieFile.originalname}`);
 
                     return fsp.writeFile(newMoviePath, data)
                 })
@@ -169,15 +174,20 @@ exports.createMovie = (req, res, next) => {
                     return fsp.readFile(avatarFile.path)
                 })
                 .then(function (data) {
-                    newAvatarPath = path.join(__dirname, `../../public/assets/img/${avatarFile.originalname}`);
+                    newAvatarPath = path.join(__dirname, `../../dist/assets/img/${avatarFile.originalname}`);
                     return fsp.writeFile(newAvatarPath, data)
                 })
                 .then(function () {
                     movie = new Movie({
                         name: body.name,
+                        description: body.description,
                         author: body.author,
-                        url: `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/public/', newMoviePath)}`,
-                        avatarUrl: `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/public/', newAvatarPath)}`
+                        url: `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newMoviePath)}`,
+                        avatarUrl: `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newAvatarPath)}`,
+                        releaseDate: body.releaseDate,
+                        startDate: body.startDate,
+                        endDate: body.endDate,
+                        cost: body.cost
                     });
 
                     movie.save((err, movie) => {

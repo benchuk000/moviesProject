@@ -16,10 +16,7 @@
             <div class="border-line"></div>
 
             <div class="logo">
-                <div>
-                    <img src="" alt="">
-                </div>
-                <div>
+                <div class="logo-title">
                     <div>
                         СЕЙЧАС В КИНО
                     </div>
@@ -32,7 +29,7 @@
             <div class="border-line"></div>
         </div>
         <div class="content">
-            <movie-preview ng-repeat="film in [1,2]" film="film"></movie-preview>
+            <movie-preview ng-repeat="movie in home.movies" movie="movie"></movie-preview>
         </div>
     </div>
 

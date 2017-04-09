@@ -1,0 +1,41 @@
+<div class="movie">
+    <div class=trailer-wrapper>
+        <iframe class="trailer" ng-src="{{movie.entity.url}}" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div class="card-like info-wrapper">
+        <div class="logo-wrapper">
+            <img src="{{movie.entity.avatarUrl}}" />
+        </div>
+
+        <div class="info">
+            <div>
+                <h2 class="title">
+                    {{movie.entity.name}}
+                </h2>
+            </div>
+
+            <div class="data">
+                <div>
+                    Дата выхода: {{movie.entity.releaseDate}}
+                </div>
+                <div>
+                    В кинотеатрах
+                </div>
+                <div>
+                    C: {{movie.entity.startDate}}
+                </div>
+                <div>
+                    По: {{movie.entity.endDate}}
+                </div>
+                <div>
+                    Режисер: {{movie.entity.producer}}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-like description">
+        {{movie.entity.description}}
+    </div>
+</div>

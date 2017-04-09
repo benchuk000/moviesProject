@@ -5,13 +5,14 @@ const bcrypt   = require('bcrypt-nodejs');
 const config   = require('../config');
 
 const userSchema = new mongoose.Schema({
-    username: { type: String, required: true },
-    login:    { type: String, unique: true, trim: true },
-    email:    { type: String },
-    password: { type: String },
-    isAdmin:  { type: Boolean, default: false },
-    albums:   [ { type: mongoose.Schema.Types.ObjectId, ref: 'Album', unique: true } ],
-    avatarUrl: { type: String }
+    username:    { type: String, required: true },
+    usersurname: { type: String, required: true },
+    passport:    { type: String, required: true },
+    login:       { type: String, unique: true, trim: true },
+    email:       { type: String },
+    password:    { type: String },
+    isAdmin:     { type: Boolean, default: false },
+    tickets:     [ { type: mongoose.Schema.Types.ObjectId, ref: 'Ticket', unique: true } ]
 });
 
 userSchema.pre('save',function (next) {

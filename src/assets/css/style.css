@@ -88,11 +88,18 @@ header{
   padding: 0 150px;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.33);
 }
-.content-wrapper{
+
+.main {
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
   padding: 0 70px;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
 }
 
 .content-main {
@@ -120,18 +127,18 @@ header{
 }
 
 
-.movie-preview{
+.movie-preview {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px 0;
+  margin-bottom: 65px;
 }
 
 .movie-preview .logo-wrapper{
   height: 350px;
   width: 230px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
   flex: 20;
+  box-shadow: 0 0 15px rgba(0,0,0,0.8);
 }
 
 .movie-preview .logo-wrapper img {
@@ -141,11 +148,35 @@ header{
 
 .movie-preview .content {
   flex: 80;
-  padding: 10px 0;
+  padding: 15px;
   height: 300px;
   background-color: white;
   border-radius: 0 10px 10px 0;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 15px rgba(0,0,0,0.8);
+}
+
+.movie-preview .content .title a {
+  color: #a21e1e;
+  text-decoration: none;
+}
+
+.movie-preview .content .title a:hover {
+  text-decoration: underline;
+}
+
+.movie-preview .content .description-wrapper {
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.movie-preview .content .description-wrapper div {
+  display: inline-block;
+}
+
+.movie-preview .content .description-wrapper div:first-child {
+  height: 129px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .popular-movies-wrapper {
@@ -175,12 +206,23 @@ header{
   height: 100px;
 }
 
+.logo-panel .logo {
+    margin: 0 15px;
+}
+
+.logo-panel .logo .logo-title {
+    width: 150px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .logo-panel .border-line {
   border: 1px solid white;
   width: 200px;
 }
 
-.logo-panel .border-line .logo {
+.logo-panel .border-line {
   display: flex;
   justify-content: center;
   align-items: center;

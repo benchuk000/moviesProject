@@ -1,14 +1,21 @@
 <div class="movie-preview">
     <div class="logo-wrapper">
-        <img src="./assets/img/movie-logo.jpg" />
+        <img src="{{preview.movie.avatarUrl}}" />
     </div>
 
     <div class="content">
         <div>
-            <h3>Красавица и чудовище</h3>
+            <h3 class="title">
+                <a ui-sref="movie({id: preview.movie._id})">
+                    {{preview.movie.name}}
+                </a>
+            </h3>
         </div>
-        <div>
-            Обозлённая Волшебница превратила принца Адама в отвратительное чудовище за то, что тот был злым, самовлюблённым и грубым
+        <div class="description-wrapper">
+            <div>{{preview.movie.description}}</div>
+            <div>
+                <a ui-sref="movie({id: preview.movie._id})"> ... ></a>
+            </div>
         </div>
         <div>
             Сеансы

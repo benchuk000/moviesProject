@@ -31,7 +31,10 @@ angular.module('bm')
                 parent:       'in.base',
                 url:          'home',
 
-                templateUrl:  'app/components/Home/home.html'
+                templateUrl:  'app/components/Home/home.html',
+
+                controllerAs: 'home',
+                controller :  'HomeController'
             })
             .state('signup', {
                 parent:       'in.base',
@@ -41,5 +44,14 @@ angular.module('bm')
 
                 controller:   'SignUpController',
                 controllerAs: 'signup'
+            })
+            .state('movie', {
+                parent:       'in.base',
+                url:          'movie/{id}',
+
+                templateUrl:  'app/components/Movie/movie.html',
+
+                controllerAs: 'movie',
+                controller :  'MovieController'
             });
      }]);

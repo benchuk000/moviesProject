@@ -1,0 +1,48 @@
+.movie {
+    width: 1250px;
+    /*flex: 100;*/
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.movie .trailer-wrapper {
+    width: inherit;
+    height: 500px;
+}
+
+.movie .trailer-wrapper .trailer {
+    width: inherit;
+    height: inherit;
+}
+
+.movie .card-like {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.movie .info-wrapper {
+    width: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.movie .info-wrapper .logo-wrapper {
+    flex: 20;
+}
+
+.movie .info-wrapper .logo-wrapper img {
+    height: 320px;
+}
+
+.movie .info-wrapper .info {
+    flex: 70;
+}
+
+.movie .info-wrapper .info .data div {
+    margin: 10px 0;
+}
