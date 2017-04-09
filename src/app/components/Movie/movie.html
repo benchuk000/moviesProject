@@ -20,22 +20,15 @@
                     Дата выхода: {{movie.entity.releaseDate}}
                 </div>
                 <div>
-                    В кинотеатрах
-                </div>
-                <div>
-                    C: {{movie.entity.startDate}}
-                </div>
-                <div>
-                    По: {{movie.entity.endDate}}
-                </div>
-                <div>
-                    Режисер: {{movie.entity.producer}}
+                    Режисер: {{movie.entity.author}}
                 </div>
             </div>
         </div>
     </div>
 
     <div class="card-like description">
-        {{movie.entity.description}}
+        <md-input-container class="md-block" flex-gt-sm>
+             <textarea readonly ng-model="movie.entity.description"></textarea>
+        </md-input-container>
     </div>
 </div>

@@ -3,5 +3,7 @@ var app = angular.module('bm', [
     'ngMaterial',
     'ngCookies',
     'LocalStorageModule',
-    'ngFileUpload'
+    'ngFileUpload',
+    'ui.grid',
+    'ui.grid.selection'
 ]);

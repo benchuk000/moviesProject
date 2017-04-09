@@ -1,0 +1,28 @@
+.manage {
+    width: 1250px;
+}
+
+.nav-bar-wrapper {
+    display: flex;
+    background-color: #e4e4e4;
+}
+
+.nav-bar-wrapper .nav-bar {
+    flex: 70;
+    display: flex;
+}
+
+.nav-bar-wrapper .create-button-wrapper {
+    flex: 30;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.create-entity-dialog {
+    min-width: 400px;
+}
+
+.grid{
+    background-color: white;
+}

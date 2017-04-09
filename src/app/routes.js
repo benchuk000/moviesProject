@@ -53,5 +53,13 @@ angular.module('bm')
 
                 controllerAs: 'movie',
                 controller :  'MovieController'
+            })
+            .state('manage-entities', {
+                parent:       'in.base',
+                url:          'manage/{entityType}',
+
+                templateUrl:  'app/components/ManageEntities/manage-entities.html',
+                controllerAs: 'entity',
+                controller:   'ManageEntitiesController'
             });
      }]);

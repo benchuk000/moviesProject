@@ -17,8 +17,8 @@ router.post('/login', auth.authenticate);
 const user = require('./controllers/user');
 router.get('/user', user.getUsers);
 router.get('/user/:id', user.getUserById);
-router.post('/user', upload.any(), user.createUser);
-router.put('/user/:id', upload.any(), user.updateUserById);
+router.post('/user', user.createUser);
+router.put('/user/:id',  user.updateUserById);
 router.delete('/user/:id', user.deleteUserById);
 router.get('/user/search/simple', user.getUsersByCriteria);
 
@@ -29,5 +29,12 @@ router.post('/movie', upload.any(), movie.createMovie);
 router.put('/movie/:id', upload.any(), movie.updateMovieById);
 router.delete('/movie/:id', movie.deleteMovieById);
 router.get('/movie/search/simple', movie.getMoviesByCriteria);
+
+const session = require('./controllers/session');
+router.get('/session', session.getSessions);
+router.get('/session/:id', session.getSessionById);
+router.post('/session', session.createSession);
+router.put('/session/:id', session.updateSessionById);
+router.delete('/session/:id', session.deleteSessionById);
 
 module.exports = router;

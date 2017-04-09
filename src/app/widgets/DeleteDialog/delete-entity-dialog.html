@@ -1,0 +1,27 @@
+<md-dialog aria-label="Craete entity" class="delete-entity-dialog">
+    <md-toolbar class="md-toolbar-red">
+        <div class="md-toolbar-tools">
+            <h2>Delete {{entity}}</h2>
+            <span flex></span>
+            <md-button class="md-icon-button" ng-click="cancel()">
+                X
+            </md-button>
+        </div>
+    </md-toolbar>
+
+    <md-dialog-content>
+        <div class="md-dialog-content">
+            You are about to delete this {{entity}}. Are you shure? This action can not be undone.
+        </div>
+    </md-dialog-content>
+
+    <md-dialog-actions layout="row">
+        <md-button ng-click="cancel()">
+            Cancel
+        </md-button>
+        <span flex></span>
+        <md-button ng-click="delete()" class="md-raised md-secondary" md-autofocus>
+            Delete
+        </md-button>
+    </md-dialog-actions>
+</md-dialog>

@@ -10,11 +10,8 @@ const movieSchema = new mongoose.Schema({
     url:         { type: String, required: true },
     avatarUrl:   { type: String },
     releaseDate: { type: Date },
-    startDate:   { type: Date, required: true },
-    endDate:     { type: Date, required: true },
-    cost:        { type: Number, required: true },
     rating:      { type: Number },
-    ratedUsers:  [ { type: mongoose.Schema.Types.ObjectId, ref: 'Ticket', unique: true } ]
+    ratedUsers:  [ { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true } ]
 });
 
 movieSchema.methods.calculateRating = function (newRating, userID) {

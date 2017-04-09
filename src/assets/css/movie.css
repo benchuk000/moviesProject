@@ -1,6 +1,5 @@
 .movie {
     width: 1250px;
-    /*flex: 100;*/
     display: flex;
     justify-content: space-around;
     align-items: flex-start;
@@ -45,4 +44,10 @@
 
 .movie .info-wrapper .info .data div {
     margin: 10px 0;
+}
+
+.movie .description {
+    width: 100%;
+    
+    white-space: pre;
 }

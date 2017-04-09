@@ -1,0 +1,20 @@
+.ui-grid .ui-grid-row .ui-grid-cell {
+    height: 50px;
+    display: flex;
+    align-items: center;
+}
+
+.ui-grid .ui-grid-row .ui-grid-cell .ui-grid-cell-contents {
+    display: flex;
+    align-items: center;
+}
+
+.ui-grid .ui-grid-row .ui-grid-cell .avatar{
+    border-radius: 50%;
+    height: 35px;
+    width: 35px;
+}
+
+.ui-grid .ui-grid-row .ui-grid-cell.ui-grid-cell-center {
+    justify-content: center;
+}

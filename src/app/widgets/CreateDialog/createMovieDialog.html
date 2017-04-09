@@ -1,0 +1,58 @@
+<md-dialog aria-label="Craete entity" class="create-entity-dialog">
+    <form ng-cloak name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Новый фильм</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="dialogCtrl.cancel()">
+                    X
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <md-input-container class="md-block" flex-gt-sm>
+                     <label>Название</label>
+                     <input required ng-model="dialogCtrl.data.name">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                     <label>Автор</label>
+                     <input type="text" required ng-model="dialogCtrl.data.author">
+                </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                     <label>Трейлер</label>
+                     <input type="text" required ng-model="dialogCtrl.data.url">
+                </md-input-container>
+                <md-datepicker ng-model="dialogCtrl.data.releaseDate" md-placeholder="Дата выхода"></md-datepicker>
+                <md-input-container class="md-block" flex-gt-sm>
+                     <label>Описание</label>
+                     <textarea ng-model="dialogCtrl.data.description" rows="8" cols="80"></textarea>
+                </md-input-container>
+
+                <div>
+                    <md-button ngf-select="dialogCtrl.addAvatar($files)" multiple accept="image/*">
+                        Add Avatar
+                    </md-button>
+                    <img ngf-thumbnail="dialogCtrl.files[0] || '/thumb.jpg'">
+                </div>
+            </div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="dialogCtrl.cancel()">
+                Cancel
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="dialogCtrl.create()" class="md-primary" md-autofocus
+                       ng-disabled="!form.$valid">
+                Create
+            </md-button>
+        </md-dialog-actions>
+    </form>
+
+    <div layout="row" class="progress-circular-wrappper"
+         ng-if="dialogCtrl.uploader.isUploading">
+        <md-progress-circular ng-if="dialogCtrl.uploader.isUploading"></md-progress-circular>
+    </div>
+</md-dialog>

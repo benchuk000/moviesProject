@@ -1,0 +1,29 @@
+<div class="manage">
+    <div class="nav-bar-wrapper">
+        <div class="nav-bar">
+            <md-nav-bar md-selected-nav-item="entity.currentNavItem" nav-bar-aria-label="navigation links">
+                  <md-nav-item md-nav-sref="manage-entities({entityType:'user'})" name="user">
+                      Users
+                  </md-nav-item>
+                  <md-nav-item md-nav-sref="manage-entities({entityType:'movie'})" name="movie">
+                      Movies
+                  </md-nav-item>
+            </md-nav-bar>
+        </div>
+        <div class="create-button-wrapper">
+            <md-button class="md-raised md-primary"
+                       ng-click="entity.createEntity()">
+                       Create
+            </md-button>
+            <md-button ng-disabled="!entity.getSelectesEntity()" ng-click="entity.edit()">Edit</md-button>
+            <md-button ng-disabled="!entity.getSelectesEntity()" ng-click="entity.remove()">Delete</md-button>
+        </div>
+    </div>
+
+    <div ui-grid="entity.gridOptions" ui-grid-selection class="grid">
+        <div layout="row" class="progress-circular-wrappper"
+             ng-if="entity.isLoading">
+            <md-progress-circular ng-if="entity.isLoading"></md-progress-circular>
+        </div>
+    </div>
+</div>

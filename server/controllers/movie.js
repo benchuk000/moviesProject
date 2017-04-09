@@ -62,7 +62,6 @@ exports.getMovieById = (req, res, next) => {
 exports.updateMovieById = (req, res, next) => {
     var body = req.body.data;
     var avatarFile = req.files ? req.files[0] : null;
-    var movieFile = req.files ? req.files[1] : null;
 
     if (!body.name) {
         return res.status(400).end(errorMessage.BAD_REQUEST);
@@ -79,7 +78,6 @@ exports.updateMovieById = (req, res, next) => {
 
         let promisses = [];
         let newAvatarPath = '';
-        let newMoviePath = '';
 
         if (avatarFile) {
             let avatarPromise = new Promise((resolve, reject) => {
@@ -96,36 +94,16 @@ exports.updateMovieById = (req, res, next) => {
             promisses.push(avatarPromise);
         }
 
-        if (movieFile) {
-            let moviePromise = new Promise((resolve, reject) => {
-                fsp.readFile(movieFile.path)
-                    .then(function (data) {
-                        newMoviePath = path.join(__dirname, `../../dist/assets/img/${movieFile.originalname}`);
-                        return fsp.writeFile(newMoviePath, data);
-                    })
-                    .then(function (){
-                        resolve();
-                    });
-            });
-
-            promisses.push(moviePromise);
-        }
-
         Promise.all(promisses)
             .then(() => {
                 movie.name = body.name;
                 movie.description = body.description;
                 movie.author = body.author;
-                movie.url = newMoviePath
-                    ? `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newMoviePath)}`
-                    : movie.url;
+                movie.url = body.url;
                 movie.avatarUrl = newAvatarPath
-                    ? `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newAvatarPath)}`
+                    ? `./${path.relative(path.join(__dirname, '../../dist/'), newAvatarPath)}`
                     : movie.avatarUrl;
                 movie.releaseDate = body.releaseDate;
-                movie.startDate = body.startDate;
-                movie.endDate = body.endDate;
-                movie.cost = body.cost;
 
                 movie.save(function (err) {
                     if (err) {
@@ -139,11 +117,10 @@ exports.updateMovieById = (req, res, next) => {
 }
 
 exports.createMovie = (req, res, next) => {
-    let movieFile = req.files[0];
-    let avatarFile = req.files[1];
+    let avatarFile = req.files[0];
     let body = req.body.data;
 
-    if (!body.name || !movieFile) {
+    if (!body.name) {
         res.status(400).end(errorMessage.MUST_PROVIDE_NAME_AND_TRACK_FILE);
     }
 
@@ -161,18 +138,9 @@ exports.createMovie = (req, res, next) => {
                     .send(errorMessage.TRACK_WITH_NAME_EXISTS);
             }
 
-            let newMoviePath = '';
             let newAvatarPath = '';
 
-            fsp.readFile(movieFile.path)
-                .then(function (data) {
-                    newMoviePath = path.join(__dirname, `../../dist/music/${movieFile.originalname}`);
-
-                    return fsp.writeFile(newMoviePath, data)
-                })
-                .then(function () {
-                    return fsp.readFile(avatarFile.path)
-                })
+            fsp.readFile(avatarFile.path)
                 .then(function (data) {
                     newAvatarPath = path.join(__dirname, `../../dist/assets/img/${avatarFile.originalname}`);
                     return fsp.writeFile(newAvatarPath, data)
@@ -182,12 +150,9 @@ exports.createMovie = (req, res, next) => {
                         name: body.name,
                         description: body.description,
                         author: body.author,
-                        url: `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newMoviePath)}`,
-                        avatarUrl: `./${path.relative('/Users/dmitryboyarchik/Documents/BSUIR/SAIPIS/dimb000.media/dist/', newAvatarPath)}`,
-                        releaseDate: body.releaseDate,
-                        startDate: body.startDate,
-                        endDate: body.endDate,
-                        cost: body.cost
+                        url: body.url,
+                        avatarUrl: `./${path.relative(path.join(__dirname, '../../dist/'), newAvatarPath)}`,
+                        releaseDate: body.releaseDate
                     });
 
                     movie.save((err, movie) => {
