@@ -17,7 +17,7 @@
                      <input required ng-model="dialogCtrl.data.name">
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
-                     <label>Автор</label>
+                     <label>Режисер</label>
                      <input type="text" required ng-model="dialogCtrl.data.author">
                 </md-input-container>
                 <md-input-container class="md-block" flex-gt-sm>
@@ -32,7 +32,7 @@
 
                 <div>
                     <md-button ngf-select="dialogCtrl.addAvatar($files)" multiple accept="image/*">
-                        Add Avatar
+                        Добавить картинку
                     </md-button>
                     <img ngf-thumbnail="dialogCtrl.files[0] || '/thumb.jpg'">
                 </div>

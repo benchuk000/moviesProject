@@ -1,5 +1,5 @@
 angular.module('bm')
-    .service('UserService', ['$http', '$q', 'Upload', function UserService ($http, $q, Upload) {
+    .service('UserService', ['$http', '$q', function UserService ($http, $q) {
         return {
             getUsers:           getUsers,
             getUser:            getUser,
@@ -64,11 +64,7 @@ angular.module('bm')
         function updateUser(data) {
             var deferred = $q.defer();
 
-            Upload.upload({
-                url: 'user/' + data.data._id,
-                method: 'PUT',
-                data: data
-            })
+            $http.put('user/' + data.data._id, data)
                 .then(
                     function (res){
                         deferred.resolve(res.data);
@@ -84,10 +80,7 @@ angular.module('bm')
         function craeteUser(data) {
             var deferred = $q.defer();
 
-            Upload.upload({
-                url: '/user',
-                data: data
-            }).then(
+            $http.post('/user', data).then(
                 function (res){
                     deferred.resolve(res.data);
                 },

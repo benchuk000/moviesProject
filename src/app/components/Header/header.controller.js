@@ -14,7 +14,8 @@ angular.module('bm')
                             $state.go('home');
                         },
                         function (message) {
-                            toastr.error(message);
+                            alert(message);
+                            // toastr.error(message);
                         }
                     );
             },

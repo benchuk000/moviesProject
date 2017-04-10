@@ -7,7 +7,7 @@ const fs           = require('fs');
 const path         = require('path');
 
 exports.createUser = (req, res, next) => {
-    let body = req.body.data;
+    let body = req.body;
 
     if (!body.login || !body.password || !body.username) {
         res.status(400).end(errorMessage.MUST_PROVIDE_EMAIL_OR_PASSWORD);
