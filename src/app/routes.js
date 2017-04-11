@@ -61,5 +61,14 @@ angular.module('bm')
                 templateUrl:  'app/components/ManageEntities/manage-entities.html',
                 controllerAs: 'entity',
                 controller:   'ManageEntitiesController'
+            })
+            .state('profile', {
+                parent:       'in.base',
+                url:          'profile',
+
+                templateUrl:  'app/components/Profile/profile.html',
+                controllerAs: 'profile',
+                controller:   'ProfileController'
             });
+
      }]);

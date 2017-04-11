@@ -2,7 +2,7 @@
     <table class="signUp">
         <tr>
             <td colspan="2" class="sign">
-                Регистрация
+                Профиль
             </td>
         </tr>
         <tr>
@@ -10,7 +10,7 @@
                 Имя:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="signup.userData.username"/>
+                <input type="text" class="signUpInput" ng-model="profile.userData.username"/>
             </td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
                 Логин:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="signup.userData.login"/>
+                <input type="text" class="signUpInput" ng-model="profile.userData.login"/>
             </td>
         </tr>
         </tr>
@@ -28,7 +28,7 @@
                 e-mail:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="signup.userData.email"/>
+                <input type="text" class="signUpInput" ng-model="profile.userData.email"/>
             </td>
         </tr>
         <tr>
@@ -36,14 +36,14 @@
                 Пароль:
             </td>
             <td>
-                <input type="password" class="signUpInput" ng-model="signup.userData.password"/>
+                <input type="password" class="signUpInput" ng-model="profile.userData.password"/>
             </td>
         </tr>
         <tr>
 
             <td colspan="2">
-                <md-button class="md-raised md-primary" ng-click="signup.signup()">
-                Регистрация
+                <md-button class="md-raised md-primary" ng-click="profile.signup()">
+              Сохранить
                 </md-button>
             </td>
         </tr>

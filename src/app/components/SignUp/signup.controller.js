@@ -5,7 +5,7 @@ angular.module('bm')
                     UserService.craeteUser(this.userData)
                         .then(
                             function (res) {
-                                alert('You have successfully signed up');
+                                alert('Регистрация прошла успешно!');
                                 $state.go('home');
                             },
                             function (message) {
