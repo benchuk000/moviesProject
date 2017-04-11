@@ -6,7 +6,8 @@ angular.module('bm')
                 createMovie:         createMovie,
                 removeMovie:         removeMovie,
                 getMovie:            getMovie,
-                updateMovie:         updateMovie
+                updateMovie:         updateMovie,
+                setRating:           setRating
             }
 
             function getMovies() {
@@ -106,6 +107,25 @@ angular.module('bm')
                     .then(
                         function(res) {
                             deferred.resolve(res);
+                        },
+                        function(err) {
+                            deferred.reject(err);
+                        }
+                    );
+
+                return deferred.promise;
+            }
+
+            function setRating (movieID, rating, userID) {
+                var deferred = $q.defer();
+
+                $http.put('rate/movie/' + movieID, {
+                    rating: rating,
+                    userID: userID
+                })
+                    .then(
+                        function(res) {
+                            deferred.resolve(res.data);
                         },
                         function(err) {
                             deferred.reject(err);

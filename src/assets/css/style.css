@@ -155,12 +155,17 @@ header{
   box-shadow: 0 0 15px rgba(0,0,0,0.8);
 }
 
-.movie-preview .content .title a {
+.movie-preview .content .title-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+
+.movie-preview .content .title-wrapper .title a {
   color: #a21e1e;
   text-decoration: none;
 }
 
-.movie-preview .content .title a:hover {
+.movie-preview .content .title-wrapper .title a:hover {
   text-decoration: underline;
 }
 

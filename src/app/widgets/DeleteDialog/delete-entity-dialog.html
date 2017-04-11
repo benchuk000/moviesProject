@@ -1,7 +1,7 @@
 <md-dialog aria-label="Craete entity" class="delete-entity-dialog">
     <md-toolbar class="md-toolbar-red">
         <div class="md-toolbar-tools">
-            <h2>Delete {{entity}}</h2>
+            <h2>Удалить {{entity}}</h2>
             <span flex></span>
             <md-button class="md-icon-button" ng-click="cancel()">
                 X
@@ -11,17 +11,17 @@
 
     <md-dialog-content>
         <div class="md-dialog-content">
-            Вы уверены,что хотите удалить {{entity}}?Это действие не может быть отменено.
+            Вы уверены,что хотите удалить {{entity}}? Это действие не может быть отменено.
         </div>
     </md-dialog-content>
 
     <md-dialog-actions layout="row">
         <md-button ng-click="cancel()">
-            Cancel
+            Отменить
         </md-button>
         <span flex></span>
         <md-button ng-click="delete()" class="md-raised md-secondary" md-autofocus>
-            Delete
+            Да, удалить
         </md-button>
     </md-dialog-actions>
 </md-dialog>

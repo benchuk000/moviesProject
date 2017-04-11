@@ -72,10 +72,17 @@ angular.module('bm')
             },
 
             edit: function () {
-                $state.go('entity', {
-                    entity: 'user',
-                    id:     this.getSelectesEntity()._id
-                });
+                ManageDialogFactory.showEditDialog(this.entity, this.getSelectesEntity())
+                    .then(
+                        function(updatedEntity) {
+                            var entity = this.entities.find(function (entity) {
+                                return entity._id === updatedEntity._id;
+                            });
+
+                            entity = updatedEntity;
+                        }, function() {
+                            // TODO: add logic here
+                        });
             },
 
             remove: function () {

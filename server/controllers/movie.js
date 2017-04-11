@@ -181,3 +181,26 @@ exports.deleteMovieById = (req, res, next) => {
         }
     });
 }
+
+exports.setRating = (req, res, next) => {
+    var body = req.body;
+    var id = req.params.id;
+
+    if (!id) {
+        return res.status(400).end(errorMessage.BAD_REQUEST);
+    }
+
+    Movie.findOne({ _id: id }, function (err, movie) {
+        movie.calculateRating(body.rating, body.userID);
+
+        console.log(movie);
+
+        movie.save(function (err) {
+            if (err) {
+                return next(err);
+            }
+
+            res.status(200).send(movie);
+        });
+    });
+}

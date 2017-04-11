@@ -4,12 +4,17 @@
     </div>
 
     <div class="content">
-        <div>
+        <div class="title-wrapper">
             <h3 class="title">
                 <a ui-sref="movie({id: preview.movie._id})">
                     {{preview.movie.name}}
                 </a>
             </h3>
+            <jk-rating-stars max-rating="5"
+                             rating="preview.movie.rating"
+                             read-only="ctrl.readOnly"
+                             on-rating="preview.setRating(rating)">
+            </jk-rating-stars>
         </div>
         <div class="description-wrapper">
             <div>{{preview.movie.description}}</div>

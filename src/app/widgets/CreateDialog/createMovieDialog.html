@@ -38,19 +38,19 @@
                     <md-button ngf-select="dialogCtrl.addAvatar($files)" multiple accept="image/*">
                         Добавить картинку
                     </md-button>
-                    <img ngf-thumbnail="dialogCtrl.files[0] || '/thumb.jpg'">
+                    <img ngf-thumbnail="dialogCtrl.files[0] || dialogCtrl.data.avatarUrl">
                 </div>
             </div>
         </md-dialog-content>
 
         <md-dialog-actions layout="row">
             <md-button ng-click="dialogCtrl.cancel()">
-                Cancel
+                Отменить
             </md-button>
             <span flex></span>
-            <md-button ng-click="dialogCtrl.create()" class="md-primary" md-autofocus
+            <md-button ng-click="dialogCtrl.accept()" class="md-primary" md-autofocus
                        ng-disabled="!form.$valid">
-                Create
+                Сохранить
             </md-button>
         </md-dialog-actions>
     </form>

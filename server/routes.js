@@ -26,6 +26,7 @@ const movie = require('./controllers/movie');
 router.get('/movie', movie.getMovies);
 router.get('/movie/:id', movie.getMovieById);
 router.post('/movie', upload.any(), movie.createMovie);
+router.put('/rate/movie/:id', movie.setRating);
 router.put('/movie/:id', upload.any(), movie.updateMovieById);
 router.delete('/movie/:id', movie.deleteMovieById);
 router.get('/movie/search/simple', movie.getMoviesByCriteria);

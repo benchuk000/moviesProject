@@ -3,26 +3,21 @@ angular.module('bm')
         var GRID_COLUMNS = {};
         GRID_COLUMNS['user'] = [
             {
-                name: '',
-                field: 'avatarUrl',
-                enableSorting: false,
-                cellTemplate: '<div><img class="avatar" src="{{row.entity.avatarUrl}}" /></div>',
-                maxWidth: 60,
-                minWidth: 50,
-                cellClass: 'ui-grid-cell-center'
-            },
-            {
-                name: 'Login',
+                name: 'Логин',
                 field: 'login'
             },
             {
-                name: 'Email',
+                name: 'Почта',
                 field: 'email'
             },
             {
-                 name: 'Name',
+                 name: 'Имя',
                  field : 'username'
-             }
+             },
+             {
+                  name: 'Фамилия',
+                  field : 'usersurname'
+              }
         ];
         GRID_COLUMNS['movie'] = [
             {
