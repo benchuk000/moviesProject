@@ -2,7 +2,8 @@ angular.module('bm')
     .service('ManageDialogFactory', ['$mdDialog',  function ManageDialogFactory ($mdDialog) {
         return {
             showCreateDialog: showCreateDialog,
-            showDeleteDialog: showDeleteDialog
+            showDeleteDialog: showDeleteDialog,
+            showEditDialog:   showEditDialog
         }
 
         function showCreateDialog (entity) {
@@ -65,5 +66,25 @@ angular.module('bm')
                     $mdDialog.hide(true);
                 };
             }
+        }
+
+        function showEditDialog (entity, data) {
+            switch (entity) {
+                case 'movie':
+                    return showMovieEditDialog(entity, data);
+            }
+        }
+
+        function showMovieEditDialog (entity, data) {
+            return $mdDialog.show({
+                controller: 'EditMovieDialogController as dialogCtrl',
+                templateUrl: './app/widgets/CreateDialog/createMovieDialog.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose:true,
+                locals: {
+                    entity: entity,
+                    data: data
+                }
+            });
         }
     }]);

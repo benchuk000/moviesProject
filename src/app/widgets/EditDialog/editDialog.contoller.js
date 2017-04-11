@@ -1,11 +1,12 @@
 angular.module('bm')
-    .controller('CreateMovieDialogController',
-    ['$scope', 'entity', '$mdDialog', 'EntityDataList', 'MovieService',
-    function ($scope, entity, $mdDialog, EntityDataList, MovieService) {
+    .controller('EditMovieDialogController',
+    ['$scope', 'entity', 'data', '$mdDialog', 'EntityDataList', 'MovieService',
+    function ($scope, entity, data, $mdDialog, EntityDataList, MovieService) {
         angular.extend(this, {
             files:                   [],
             itemName:                EntityDataList.getDataList(entity).itemName,
             createDialogTemplateUrl: EntityDataList.getDataList(entity).createDialogTemplateUrl,
+            data:                    data,
 
             cancel: function () {
                 $mdDialog.cancel();
@@ -19,7 +20,7 @@ angular.module('bm')
                 var self = this;
                 self.isLoading = true;
 
-                MovieService.createMovie({
+                MovieService.updateMovie({
                     data: self.data,
                     img: self.files[0]
                 })
