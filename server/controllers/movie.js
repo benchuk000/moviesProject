@@ -100,6 +100,7 @@ exports.updateMovieById = (req, res, next) => {
                 movie.description = body.description;
                 movie.author = body.author;
                 movie.url = body.url;
+                movie.genre = body.genre;
                 movie.avatarUrl = newAvatarPath
                     ? `./${path.relative(path.join(__dirname, '../../dist/'), newAvatarPath)}`
                     : movie.avatarUrl;
@@ -151,6 +152,7 @@ exports.createMovie = (req, res, next) => {
                         description: body.description,
                         author: body.author,
                         url: body.url,
+                        genre: body.genre,
                         avatarUrl: `./${path.relative(path.join(__dirname, '../../dist/'), newAvatarPath)}`,
                         releaseDate: body.releaseDate
                     });

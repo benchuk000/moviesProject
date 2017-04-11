@@ -69,6 +69,14 @@ angular.module('bm')
                 templateUrl:  'app/components/Profile/profile.html',
                 controllerAs: 'profile',
                 controller:   'ProfileController'
+            })
+            .state('contact', {
+                parent:       'in.base',
+                url:          'contact',
+
+                templateUrl:  'app/components/Contact/contact.html'
+
             });
+
 
      }]);

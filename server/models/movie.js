@@ -11,6 +11,7 @@ const movieSchema = new mongoose.Schema({
     avatarUrl:   { type: String },
     releaseDate: { type: Date },
     rating:      { type: Number },
+    genre:       { type: String, required: true},
     ratedUsers:  [ { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true } ]
 });
 

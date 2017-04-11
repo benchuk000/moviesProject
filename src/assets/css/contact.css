@@ -1,0 +1,47 @@
+.contacts{
+    border-radius: 6px;
+    width: 800px;
+    height: 700px;
+    background-color: white;
+    border-collapse: collapse;
+    padding: 10px;
+}
+
+.contacts .title{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.contacts .title .border-line {
+  border: 1px solid black;
+  width: 200px;
+}
+
+.textOfHeader{
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+    font-size: 30px;
+}
+.contactsWrapper{
+    display: flex;
+    justify-content: center;
+    padding:2px;
+    align-items: center;
+    height: 100%;
+}
+.contactsTableWrapper{
+    padding:2px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+.contactsTable{
+
+
+}
+.contactsTable td{
+    text-align: center;
+    padding: 10px;
+}
