@@ -16,7 +16,8 @@ gulp.task('libs', () =>
         './bower_components/ng-file-upload/ng-file-upload-all.min.js',
         './bower_components/angular-local-storage/dist/angular-local-storage.min.js',
         './bower_components/angular-cookies/angular-cookies.min.js',
-        './bower_components/angular-ui-grid/ui-grid.min.js'
+        './bower_components/angular-ui-grid/ui-grid.min.js',
+        './bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.js'
     ])
         .pipe(concat('libs.js'))
         .pipe(gulp.dest('./dist/'))
@@ -36,10 +37,21 @@ gulp.task('styles', function(){
         './src/assets/css/reset.css',
         './bower_components/angular-material/angular-material.min.css',
         './bower_components/angular-ui-grid/ui-grid.css',
+        './bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.css',
         './src/**/*.css'
     ])
         .pipe(concat('style.css'))
         .pipe(gulp.dest('./dist/'));
+});
+
+gulp.task('fonts', function(){
+    return gulp.src([
+        './bower_components/material-design-icons/**/*.eot',
+        './bower_components/material-design-icons/**/*.woff2',
+        './bower_components/material-design-icons/**/*.woff',
+        './bower_components/material-design-icons/**/*.ttf'
+    ])
+        .pipe(gulp.dest('./dist/assets/fonts'));
 });
 
 gulp.task('img', function(){
@@ -56,4 +68,4 @@ gulp.task('watch', function() {
     gulp.watch('./src/**/*.svg', ['svg']);
 });
 
-gulp.task('default', ['watch','styles', 'scripts', 'html', 'img']);
+gulp.task('default', ['watch','styles', 'scripts', 'html', 'img', 'fonts']);

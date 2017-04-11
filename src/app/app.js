@@ -5,5 +5,6 @@ var app = angular.module('bm', [
     'LocalStorageModule',
     'ngFileUpload',
     'ui.grid',
-    'ui.grid.selection'
+    'ui.grid.selection',
+    'jkAngularRatingStars'
 ]);

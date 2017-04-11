@@ -10,13 +10,15 @@ const movieSchema = new mongoose.Schema({
     url:         { type: String, required: true },
     avatarUrl:   { type: String },
     releaseDate: { type: Date },
-    rating:      { type: Number },
+    rating:      { type: Number, default: 0 },
     ratedUsers:  [ { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true } ]
 });
 
 movieSchema.methods.calculateRating = function (newRating, userID) {
+    var ratingSum = this.rating * this.ratedUsers.length;
+
+    this.rating = (ratingSum + newRating) / (this.ratedUsers.length + 1);
     this.ratedUsers.push(userID);
-    this.rating = this.rating * ratedUsers.length - 1 / ratedUsers.length - 1;
 };
 
 module.exports = mongoose.model('Movie', movieSchema);
