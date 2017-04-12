@@ -12,6 +12,8 @@ angular.module('bm')
                     return showUserCreateDialog(entity);
                 case 'movie':
                     return showMovieCreateDialog(entity);
+                case 'session':
+                    return showSessionCreateDialog(entity);
             }
         }
 
@@ -35,6 +37,18 @@ angular.module('bm')
                 clickOutsideToClose:true,
                 locals: {
                     entity:entity
+                }
+            });
+        }
+
+        function showSessionCreateDialog (entity) {
+            return $mdDialog.show({
+                controller: 'CreateSessionDialogController as dialogCtrl',
+                templateUrl: '/app/widgets/CreateDialog/createSessionDialog.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose:true,
+                locals: {
+                    entity: entity
                 }
             });
         }

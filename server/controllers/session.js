@@ -6,21 +6,32 @@ const fsp          = require('fs-promise');
 const path         = require('path');
 
 exports.getSessions = (req, res, next) => {
-    var movieID = req.query.movieID;
+    let criteria = {};
+    if (req.query.movie) {
+        criteria.movie = req.query.movie
+    }
+    if (req.query.date) {
+        let startDate = new Date(req.query.date);
+        let endDate = new Date(req.query.date);
+
+        endDate = new Date(endDate.setDate(endDate.getDate() + 1));
+        criteria.startDate = { $gt: startDate, $lt: endDate };
+    }
 
     Session
-        .find({ movie: movieID })
+        .find(criteria)
+        .populate('movie')
         .exec(function(err, sessions) {
             if (err) {
                 next(err);
             }
 
             res.status(200).send(sessions);
-        })
+        });
 }
 
 exports.getSessionById = (req, res, next) => {
-    var id = req.params.id;
+    let id = req.params.id;
 
     Session.find( { _id: id }).exec((err, user) => {
         if (err) {
@@ -32,7 +43,7 @@ exports.getSessionById = (req, res, next) => {
 }
 
 exports.updateSessionById = (req, res, next) => {
-    var body = req.body.data;
+    let body = req.body.data;
 
     if (!body.name) {
         return res.status(400).end(errorMessage.BAD_REQUEST);
@@ -62,40 +73,32 @@ exports.updateSessionById = (req, res, next) => {
 }
 
 exports.createSession = (req, res, next) => {
-    let body = req.body.data;
+    let body = req.body;
+    let session = new Session({
+        startDate: new Date(body.startDate),
+        endDate: new Date(body.endDate),
+        movie: body.movie
+    });
 
-    if (!body.name || !sessionFile) {
-        res.status(400).end(errorMessage.MUST_PROVIDE_NAME_AND_TRACK_FILE);
-    }
+    session.save((err, session) => {
+        if (err) {
+            return next(err);
+        }
 
-    Session.findOne(
-        {
-            name: body.name
-        },
-        (err, session) => {
-            if (err) {
-                return next(err);
-            }
+        Session.findOne({ _id: session._id })
+            .populate('movie')
+            .exec(function(err, session) {
+                if (err) {
+                    return next(err);
+                }
 
-            if (session !== null) {
-                return res.status(401)
-                    .send(errorMessage.TRACK_WITH_NAME_EXISTS);
-            }
-
-            session = new Session({
-                startDate: body.startDate,
-                endDate: body.endDate,
-                movie: body.movie
+                res.status(200).send(session);
             });
-
-            session.save((err, session) => {
-                res.status(201).send(session);
-            });
-        });
+    });
 }
 
 exports.deleteSessionById = (req, res, next) => {
-    var id = req.params.id;
+    let id = req.params.id;
 
     if (!id) {
         return res.status(400).end(errorMessage.BAD_REQUEST);

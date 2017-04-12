@@ -17,7 +17,9 @@ gulp.task('libs', () =>
         './bower_components/angular-local-storage/dist/angular-local-storage.min.js',
         './bower_components/angular-cookies/angular-cookies.min.js',
         './bower_components/angular-ui-grid/ui-grid.min.js',
-        './bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.js'
+        './bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.js',
+        './bower_components/moment/min/moment-with-locales.min.js',
+        './bower_components/ng-material-datetimepicker/dist/angular-material-datetimepicker.min.js'
     ])
         .pipe(concat('libs.js'))
         .pipe(gulp.dest('./dist/'))
@@ -38,6 +40,7 @@ gulp.task('styles', function(){
         './bower_components/angular-material/angular-material.min.css',
         './bower_components/angular-ui-grid/ui-grid.css',
         './bower_components/angular-jk-rating-stars/dist/jk-rating-stars.min.css',
+        './bower_components/ng-material-datetimepicker/dist/material-datetimepicker.min.css',
         './src/**/*.css'
     ])
         .pipe(concat('style.css'))

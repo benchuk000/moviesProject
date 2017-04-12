@@ -6,5 +6,6 @@ var app = angular.module('bm', [
     'ngFileUpload',
     'ui.grid',
     'ui.grid.selection',
-    'jkAngularRatingStars'
+    'jkAngularRatingStars',
+    'ngMaterialDatePicker'
 ]);

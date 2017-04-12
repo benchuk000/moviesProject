@@ -1,0 +1,87 @@
+<md-dialog aria-label="Craete entity" class="create-entity-dialog">
+    <form ng-cloak name="form">
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Новый сеанс</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="dialogCtrl.cancel()">
+                    X
+                </md-button>
+            </div>
+        </md-toolbar>
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div>
+                    <md-input-container>
+                        <label>Фильм</label>
+                            <md-select ng-model="dialogCtrl.data.movie._id">
+                                <md-option><em>None</em></md-option>
+                                <md-option ng-repeat="movie in dialogCtrl.movies"
+                                           ng-value="movie._id">
+                                    {{movie.name}}
+                                </md-option>
+                        </md-select>
+                    </md-input-container>
+                </div>
+
+                <div>
+                    <md-input-container>
+                        <md-datepicker ng-disabled="!dialogCtrl.data.movie._id"
+                                       ng-model="dialogCtrl.date"
+                                       md-placeholder="Дата"
+                                       ng-change="dialogCtrl.getSessions()"></md-datepicker>
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdc-datetime-picker date="false"
+                               show-todays-date
+                               placeholder="начало"
+                               ng-disabled="!dialogCtrl.date"
+                               ng-change="dialogCtrl.onStartDate()"
+                               ng-model="dialogCtrl.data.startDate">
+                    </md-input-container>
+                    <md-input-container>
+                        <input mdc-datetime-picker date="false"
+                               show-todays-date
+                               placeholder="конец"
+                               ng-disabled="!dialogCtrl.date"
+                               ng-change="dialogCtrl.onEndDate()"
+                               ng-model="dialogCtrl.data.endDate">
+                    </md-input-container>
+                </div>
+
+                <div ng-if="dialogCtrl.date">
+                    <div ng-show="dialogCtrl.sessions.length">
+                        <div>
+                            Сеансы на выбранную дату:
+                        </div>
+                        <ul>
+                            <li ng-repeat="session in dialogCtrl.sessions">
+                                {{session.startDate | dateWithTime}} - {{session.endDate | dateWithTime}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div ng-show="!dialogCtrl.sessions.length">
+                        Сеансов на эту дату нет
+                    </div>
+                </div>
+            <div>
+        </md-dialog-content>
+
+        <md-dialog-actions layout="row">
+            <md-button ng-click="dialogCtrl.cancel()">
+                Отменить
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="dialogCtrl.accept()" class="md-primary" md-autofocus
+                       ng-disabled="!form.$valid">
+                Сохранить
+            </md-button>
+        </md-dialog-actions>
+    </form>
+
+    <div layout="row" class="progress-circular-wrappper"
+         ng-if="dialogCtrl.uploader.isUploading">
+        <md-progress-circular ng-if="dialogCtrl.uploader.isUploading"></md-progress-circular>
+    </div>
+</md-dialog>
