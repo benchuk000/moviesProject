@@ -185,15 +185,18 @@ header{
 }
 
 .popular-movies-wrapper {
+    flex: 25;
+}
+
+.popular-movies {
   border-radius: 5px;
-  flex: 25;
   background-color: white;
   height: auto;
   background-color: #b71d4d;
   padding: 1px;
 }
 
-.popular-movies-wrapper .title{
+.popular-movies .title{
   padding: 5px;
   display: flex;
   justify-content: space-around;

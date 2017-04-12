@@ -7,7 +7,8 @@ angular.module('bm')
                 removeMovie:         removeMovie,
                 getMovie:            getMovie,
                 updateMovie:         updateMovie,
-                setRating:           setRating
+                setRating:           setRating,
+                getTopMovies:        getTopMovies
             }
 
             function getMovies() {
@@ -129,6 +130,22 @@ angular.module('bm')
                         },
                         function(err) {
                             deferred.reject(err);
+                        }
+                    );
+
+                return deferred.promise;
+            }
+
+            function getTopMovies () {
+                var deferred = $q.defer();
+
+                $http.get('top/movie')
+                    .then(
+                        function(res) {
+                            deferred.resolve(res.data)
+                        },
+                        function(err) {
+                            deferred.reject(err.data);
                         }
                     );
 

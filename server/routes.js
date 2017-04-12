@@ -30,6 +30,7 @@ router.put('/rate/movie/:id', movie.setRating);
 router.put('/movie/:id', upload.any(), movie.updateMovieById);
 router.delete('/movie/:id', movie.deleteMovieById);
 router.get('/movie/search/simple', movie.getMoviesByCriteria);
+router.get('/top/movie/', movie.getTopMovies);
 
 const session = require('./controllers/session');
 router.get('/session', session.getSessions);

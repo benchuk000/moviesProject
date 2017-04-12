@@ -193,7 +193,9 @@ exports.setRating = (req, res, next) => {
     Movie.findOne({ _id: id }, function (err, movie) {
         movie.calculateRating(body.rating, body.userID);
 
-        console.log(movie);
+        if (err) {
+            return next(err);
+        }
 
         movie.save(function (err) {
             if (err) {
@@ -202,5 +204,15 @@ exports.setRating = (req, res, next) => {
 
             res.status(200).send(movie);
         });
+    });
+}
+
+exports.getTopMovies = (req, res, next) => {
+    Movie.find({}).sort({'rating': 1}).limit(5).exec(function (err, movies) {
+        if (err) {
+            return next(err);
+        }
+
+        res.status(200).send(movies);
     });
 }

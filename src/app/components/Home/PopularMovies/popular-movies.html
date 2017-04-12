@@ -1,0 +1,10 @@
+<div class="popular-movies">
+    <div class="title">
+        {{top.title}}
+    </div>
+    <ul class="popular-list">
+        <li ng-repeat="movie in top.movies">
+            <a ui-sref="movie({id: movie._id})">{{movie.name}}</a>
+        </li>
+    </ul>
+</div>
