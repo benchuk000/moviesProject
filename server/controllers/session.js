@@ -1,6 +1,7 @@
 'use strict';
 
 const Session      = require('../models/session');
+const Movie        = require('../models/movie');
 const errorMessage = require('../consts/errors');
 const fsp          = require('fs-promise');
 const path         = require('path');
@@ -85,14 +86,21 @@ exports.createSession = (req, res, next) => {
             return next(err);
         }
 
-        Session.findOne({ _id: session._id })
-            .populate('movie')
-            .exec(function(err, session) {
-                if (err) {
-                    return next(err);
-                }
+        Movie.findOne({ _id: session.movie })
+            .exec((err, movie) => {
+                movie.sessions.push(session._id);
 
-                res.status(200).send(session);
+                movie.save((err) => {
+                    Session.findOne({ _id: session._id })
+                        .populate('movie')
+                        .exec(function(err, session) {
+                            if (err) {
+                                return next(err);
+                            }
+
+                            res.status(200).send(session);
+                        });
+                });
             });
     });
 }
@@ -104,9 +112,16 @@ exports.deleteSessionById = (req, res, next) => {
         return res.status(400).end(errorMessage.BAD_REQUEST);
     }
 
-    Session.remove({ _id: id }, function (err, data) {
+    Session.remove({ _id: id }, function (err) {
         if (!err) {
-            res.status(200).send('Session has been deleted');
+            Movie.findOne({ sessions: id })
+                .exec((err, movie) => {
+                    movie.sessions.splice(movie.sessions.indexOf(id), 1);
+
+                    movie.save((err) => {
+                        res.status(200).send('Session has been deleted');
+                    });
+                });
         }
         else {
             res.status(404).send('Session has been not found');

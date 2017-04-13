@@ -6,29 +6,20 @@ const fsp          = require('fs-promise');
 const path         = require('path');
 
 exports.getMovies = (req, res, next) => {
-    var criteria = req.query.criteria;
+    let criteria = req.query.criteria
+        ? { $or: [{ name: { $regex : `${criteria}`} }, { author: { $regex : `${criteria}`} }] }
+        : {};
 
-    if (criteria) {
-        Movie
-            .find({ $or: [{ name: { $regex : `${criteria}`} }, { author: { $regex : `${criteria}`} }] })
-            .exec(function(err, movies) {
-                if (err) {
-                    next(err);
-                }
+    Movie
+        .find(criteria)
+        .populate('sessions')
+        .exec((err, movies) => {
+            if (err) {
+                next(err);
+            }
 
-                res.status(200).send(movies);
-            })
-    } else {
-        Movie
-            .find()
-            .exec(function(err, movies) {
-                if (err) {
-                    next(err);
-                }
-
-                res.status(200).send(movies);
-            })
-    }
+            res.status(200).send(movies);
+        });
 }
 
 exports.getMoviesByCriteria = (req, res, next) => {
@@ -38,83 +29,88 @@ exports.getMoviesByCriteria = (req, res, next) => {
         return res.status(400).end(errorMessage.BAD_REQUEST);
     }
 
-    Movie.find({ name: new RegExp(`.*${criteria}.*`, 'i') }).exec((err, movies) => {
-        if (err) {
-            return next(err);
-        }
+    Movie.find({ name: new RegExp(`.*${criteria}.*`, 'i') })
+        .exec((err, movies) => {
+            if (err) {
+                return next(err);
+            }
 
-        res.send(movies);
-    });
+            res.send(movies);
+        });
 }
 
 exports.getMovieById = (req, res, next) => {
-    var id = req.params.id;
+    let id = req.params.id;
 
-    Movie.find( { _id: id }).exec((err, user) => {
-        if (err) {
-            return next(err);
-        }
+    Movie.find( { _id: id })
+        .populate('sessions')
+        .exec((err, user) => {
+            if (err) {
+                return next(err);
+            }
 
-        res.send(user);
-    });
+            res.send(user);
+        });
 }
 
 exports.updateMovieById = (req, res, next) => {
-    var body = req.body.data;
-    var avatarFile = req.files ? req.files[0] : null;
+    let body = req.body.data;
+    let avatarFile = req.files ? req.files[0] : null;
 
     if (!body.name) {
         return res.status(400).end(errorMessage.BAD_REQUEST);
     }
 
-    Movie.findOne({ _id: req.params.id }, function (err, movie) {
-        if (err) {
-            return next(err);
-        }
+    Movie.findOne({ _id: req.params.id })
+        .populate('sessions')
+        .exec((err, movie) => {
+            if (err) {
+                return next(err);
+            }
 
-        if (!movie) {
-            return res.status(404).send(errorMessage.NO_SUCH_USER);
-        }
+            if (!movie) {
+                return res.status(404).send(errorMessage.NO_SUCH_USER);
+            }
 
-        let promisses = [];
-        let newAvatarPath = '';
+            let promisses = [];
+            let newAvatarPath = '';
 
-        if (avatarFile) {
-            let avatarPromise = new Promise((resolve, reject) => {
-                fsp.readFile(avatarFile.path)
-                    .then(function (data) {
-                        newAvatarPath = path.join(__dirname, `../../dist/assets/img/${avatarFile.originalname}`);
-                        return fsp.writeFile(newAvatarPath, data);
-                    })
-                    .then(function () {
-                        resolve();
-                    });
-            });
-
-            promisses.push(avatarPromise);
-        }
-
-        Promise.all(promisses)
-            .then(() => {
-                movie.name = body.name;
-                movie.description = body.description;
-                movie.author = body.author;
-                movie.url = body.url;
-                movie.genre = body.genre;
-                movie.avatarUrl = newAvatarPath
-                    ? `./${path.relative(path.join(__dirname, '../../dist/'), newAvatarPath)}`
-                    : movie.avatarUrl;
-                movie.releaseDate = body.releaseDate;
-
-                movie.save(function (err) {
-                    if (err) {
-                        return next(err);
-                    }
-
-                    res.status(200).send(movie);
+            if (avatarFile) {
+                let avatarPromise = new Promise((resolve, reject) => {
+                    fsp.readFile(avatarFile.path)
+                        .then(function (data) {
+                            newAvatarPath = path.join(__dirname, `../../dist/assets/img/${avatarFile.originalname}`);
+                            return fsp.writeFile(newAvatarPath, data);
+                        })
+                        .then(function () {
+                            resolve();
+                        });
                 });
-            });
-    });
+
+                promisses.push(avatarPromise);
+            }
+
+            Promise.all(promisses)
+                .then(() => {
+                    movie.name = body.name;
+                    movie.description = body.description;
+                    movie.author = body.author;
+                    movie.url = body.url;
+                    movie.genre = body.genre;
+                    movie.avatarUrl = newAvatarPath
+                        ? `./${path.relative(path.join(__dirname, '../../dist/'), newAvatarPath)}`
+                        : movie.avatarUrl;
+                    movie.releaseDate = body.releaseDate;
+
+                    movie.save(function (err) {
+                        if (err) {
+                            return next(err);
+                        }
+
+                        res.status(200).send(movie);
+                    });
+                });
+        });
 }
 
 exports.createMovie = (req, res, next) => {
@@ -125,11 +121,9 @@ exports.createMovie = (req, res, next) => {
         res.status(400).end(errorMessage.MUST_PROVIDE_NAME_AND_TRACK_FILE);
     }
 
-    Movie.findOne(
-        {
-            name: body.name
-        },
-        (err, movie) => {
+    Movie.findOne({ name: body.name })
+        .populate('sessions')
+        .exec((err, movie) => {
             if (err) {
                 return next(err);
             }
@@ -165,55 +159,61 @@ exports.createMovie = (req, res, next) => {
 }
 
 exports.deleteMovieById = (req, res, next) => {
-    var id = req.params.id;
+    let id = req.params.id;
 
     if (!id) {
         return res.status(400).end(errorMessage.BAD_REQUEST);
     }
 
-    Movie.remove({ _id: id }, function (err, data) {
-        // TODO: add removing of related movie
-        if (!err) {
-            res.status(200).send('Movie has been deleted');
-        }
-        else {
-            res.status(404).send('Movie has been not found');
-        }
-    });
+    Movie.remove({ _id: id })
+        .exec((err, data) => {
+            // TODO: add removing of related movie
+            if (!err) {
+                res.status(200).send('Movie has been deleted');
+            }
+            else {
+                res.status(404).send('Movie has been not found');
+            }
+        });
 }
 
 exports.setRating = (req, res, next) => {
-    var body = req.body;
-    var id = req.params.id;
+    let body = req.body;
+    let id = req.params.id;
 
     if (!id) {
         return res.status(400).end(errorMessage.BAD_REQUEST);
     }
 
-    Movie.findOne({ _id: id }, function (err, movie) {
-        movie.calculateRating(body.rating, body.userID);
-        console.log(movie);
+    Movie.findOne({ _id: id })
+        .populate('sessions')
+        .exec((err, movie) => {
+            movie.calculateRating(body.rating, body.userID);
+            console.log(movie);
 
-        if (err) {
-            return next(err);
-        }
-
-        movie.save(function (err) {
             if (err) {
                 return next(err);
             }
 
-            res.status(200).send(movie);
+            movie.save(function (err) {
+                if (err) {
+                    return next(err);
+                }
+
+                res.status(200).send(movie);
+            });
         });
-    });
 }
 
 exports.getTopMovies = (req, res, next) => {
-    Movie.find({}).sort({'rating': -1}).limit(5).exec(function (err, movies) {
-        if (err) {
-            return next(err);
-        }
+    Movie.find({})
+        .sort({ 'rating': -1 })
+        .limit(5)
+        .exec((err, movies) => {
+            if (err) {
+                return next(err);
+            }
 
-        res.status(200).send(movies);
-    });
+            res.status(200).send(movies);
+        });
 }

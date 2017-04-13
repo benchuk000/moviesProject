@@ -22,8 +22,17 @@
                 <a ui-sref="movie({id: preview.movie._id})"> ... ></a>
             </div>
         </div>
-        <div>
-            Сеансы
+        <div ng-show="preview.movie.sessions.length">
+            <div>
+                <h4 class="title">Сеансы</h4>
+            </div>
+
+            <div class="sessions-wrapper">
+                <div class="session"
+                     ng-repeat="session in preview.movie.sessions">
+                    {{session.startDate | timeOnly}}
+                </div>
+            </div>
         </div>
     </div>
 </div>

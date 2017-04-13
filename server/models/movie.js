@@ -13,7 +13,8 @@ const movieSchema = new mongoose.Schema({
     rating:      { type: Number },
     genre:       { type: String },
     rating:      { type: Number, default: 0 },
-    ratedUsers:  [ { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true } ]
+    ratedUsers:  [ { type: mongoose.Schema.Types.ObjectId, ref: 'User', unique: true } ],
+    sessions:    [ { type: mongoose.Schema.Types.ObjectId, ref: 'Session', unique: true } ]
 });
 
 movieSchema.methods.calculateRating = function (newRating, userID) {
