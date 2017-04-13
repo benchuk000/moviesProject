@@ -56,7 +56,7 @@
     </form>
 
     <div layout="row" class="progress-circular-wrappper"
-         ng-if="dialogCtrl.uploader.isUploading">
-        <md-progress-circular ng-if="dialogCtrl.uploader.isUploading"></md-progress-circular>
+         ng-if="dialogCtrl.isLoading">
+        <md-progress-circular ng-if="dialogCtrl.isLoading"></md-progress-circular>
     </div>
 </md-dialog>

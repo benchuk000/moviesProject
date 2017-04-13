@@ -3,6 +3,10 @@ angular.module('bm')
     ['$scope', 'entity', '$mdDialog', 'EntityDataList', 'SessionService', 'MovieService',
     function ($scope, entity, $mdDialog, EntityDataList, SessionService, MovieService) {
         var self = this;
+        var MAX_HOURS = 24;
+        var MAX_MINUTES = 0;
+        var MIN_HOURS = 9;
+        var MIN_MINUTES = 0;
 
         angular.extend(this, {
             files:                   [],
@@ -41,24 +45,31 @@ angular.module('bm')
             },
 
             getSessions: function () {
+                self.isLoading = true;
+
                 SessionService.getSessions({
                     date: this.date
                 })
                     .then(function (sessions) {
                         self.sessions = sessions;
+                        self.setMinMaxDate();
+                        self.isLoading = false;
                     });
             },
 
-            onStartDate: function () {
-                this.data.startDate.setDate(this.date.getDate());
-                this.data.startDate.setMonth(this.date.getMonth());
-                this.data.startDate.setYear(this.date.getFullYear());
-            },
+            setMinMaxDate: function () {
+                if (!this.date) {
+                    return;
+                }
 
-            onEndDate: function () {
-                this.data.endDate.setDate(this.date.getDate());
-                this.data.endDate.setMonth(this.date.getMonth());
-                this.data.endDate.setYear(this.date.getFullYear());
+                this.minDate = new Date(this.date);
+                this.maxDate = new Date(this.date);
+
+                this.minDate.setHours(MIN_HOURS);
+                this.minDate.setMinutes(MIN_MINUTES);
+
+                this.maxDate.setHours(MAX_HOURS);
+                this.maxDate.setMinutes(MAX_MINUTES);
             }
         });
 

@@ -38,3 +38,15 @@
 .jk-rating-stars-container a:first-child {
     display: none;
 }
+
+.progress-circular-wrappper {
+    height: 100%;
+    width: 100%;
+    background: rgba(197, 197, 197, 0.48);
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 0;
+    top: 0;
+}

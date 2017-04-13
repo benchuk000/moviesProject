@@ -27,8 +27,7 @@
 
                 <div>
                     <md-input-container>
-                        <md-datepicker ng-disabled="!dialogCtrl.data.movie._id"
-                                       ng-model="dialogCtrl.date"
+                        <md-datepicker ng-model="dialogCtrl.date"
                                        md-placeholder="Дата"
                                        ng-change="dialogCtrl.getSessions()"></md-datepicker>
                     </md-input-container>
@@ -37,16 +36,17 @@
                                show-todays-date
                                placeholder="начало"
                                ng-disabled="!dialogCtrl.date"
-                               ng-change="dialogCtrl.onStartDate()"
-                               ng-model="dialogCtrl.data.startDate">
+                               ng-model="dialogCtrl.data.startDate"
+                               min-date="dialogCtrl.minDate">
                     </md-input-container>
                     <md-input-container>
                         <input mdc-datetime-picker date="false"
                                show-todays-date
                                placeholder="конец"
-                               ng-disabled="!dialogCtrl.date"
-                               ng-change="dialogCtrl.onEndDate()"
-                               ng-model="dialogCtrl.data.endDate">
+                               ng-disabled="!dialogCtrl.data.startDate"
+                               ng-model="dialogCtrl.data.endDate"
+                               min-date="dialogCtrl.data.startDate"
+                               max-date="dialogCtrl.maxDate">
                     </md-input-container>
                 </div>
 
@@ -55,11 +55,13 @@
                         <div>
                             Сеансы на выбранную дату:
                         </div>
-                        <ul>
+                        <ol>
                             <li ng-repeat="session in dialogCtrl.sessions">
-                                {{session.startDate | dateWithTime}} - {{session.endDate | dateWithTime}}
+                                <span ng-bind="session.startDate | dateWithTime"></span>
+                                <span>—</span>
+                                <span ng-bind="session.endDate | dateWithTime"></span>
                             </li>
-                        </ul>
+                        </ol>
                     </div>
                     <div ng-show="!dialogCtrl.sessions.length">
                         Сеансов на эту дату нет
@@ -81,7 +83,7 @@
     </form>
 
     <div layout="row" class="progress-circular-wrappper"
-         ng-if="dialogCtrl.uploader.isUploading">
-        <md-progress-circular ng-if="dialogCtrl.uploader.isUploading"></md-progress-circular>
+         ng-if="dialogCtrl.isLoading">
+        <md-progress-circular ng-if="dialogCtrl.isLoading"></md-progress-circular>
     </div>
 </md-dialog>
