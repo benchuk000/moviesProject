@@ -14,20 +14,8 @@
             <div class="md-dialog-content">
                 <div>
                     <md-input-container>
-                        <label>Фильм</label>
-                            <md-select ng-model="dialogCtrl.data.movie._id">
-                                <md-option><em>None</em></md-option>
-                                <md-option ng-repeat="movie in dialogCtrl.movies"
-                                           ng-value="movie._id">
-                                    {{movie.name}}
-                                </md-option>
-                        </md-select>
-                    </md-input-container>
-                </div>
-
-                <div>
-                    <md-input-container>
-                        <md-datepicker ng-model="dialogCtrl.date"
+                        <md-datepicker md-open-on-focus
+                                       ng-model="dialogCtrl.date"
                                        md-placeholder="Дата"
                                        ng-change="dialogCtrl.getSessions()"></md-datepicker>
                     </md-input-container>
@@ -66,6 +54,19 @@
                     <div ng-show="!dialogCtrl.sessions.length">
                         Сеансов на эту дату нет
                     </div>
+                </div>
+
+                <div>
+                    <md-input-container>
+                        <label>Фильм</label>
+                            <md-select ng-model="dialogCtrl.data.movie._id">
+                                <md-option><em>None</em></md-option>
+                                <md-option ng-repeat="movie in dialogCtrl.movies"
+                                           ng-value="movie._id">
+                                    {{movie.name}}
+                                </md-option>
+                        </md-select>
+                    </md-input-container>
                 </div>
             <div>
         </md-dialog-content>

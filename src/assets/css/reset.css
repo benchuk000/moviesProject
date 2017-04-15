@@ -24,7 +24,8 @@ time, mark, audio, video {
 	vertical-align: baseline;
 }*/
 
-a, tbody, tfoot, thead, tr, th, td, ol, ul, li {
+/*tbody, tfoot, thead, tr, th, td,*/
+a, ol, ul, li {
   margin: 0;
   padding: 0;
   border: 0;
@@ -55,7 +56,7 @@ q:before, q:after {
 	content: '';
 	content: none;
 }
-table {
+/*table {
 	border-collapse: collapse;
 	border-spacing: 0;
-}
+}*/
