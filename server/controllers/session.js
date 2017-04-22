@@ -34,13 +34,15 @@ exports.getSessions = (req, res, next) => {
 exports.getSessionById = (req, res, next) => {
     let id = req.params.id;
 
-    Session.find( { _id: id }).exec((err, user) => {
-        if (err) {
-            return next(err);
-        }
+    Session.find({ _id: id })
+        .populate('movie')
+        .exec((err, user) => {
+            if (err) {
+                return next(err);
+            }
 
-        res.send(user);
-    });
+            res.send(user);
+        });
 }
 
 exports.updateSessionById = (req, res, next) => {
@@ -78,7 +80,8 @@ exports.createSession = (req, res, next) => {
     let session = new Session({
         startDate: new Date(body.startDate),
         endDate: new Date(body.endDate),
-        movie: body.movie
+        movie: body.movie,
+        cost: body.cost
     });
 
     session.save((err, session) => {

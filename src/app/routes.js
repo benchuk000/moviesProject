@@ -76,6 +76,15 @@ angular.module('bm')
 
                 templateUrl:  'app/components/Contact/contact.html'
 
+            })
+            .state('order', {
+                parent:       'in.base',
+                url:          'order?sessionID',
+
+                templateUrl:  'app/components/Order/order.html',
+                controllerAs: 'order',
+                controller:   'OrderController'
+
             });
 
 

@@ -55,6 +55,11 @@ angular.module('bm')
                 name: 'Фильм',
                 field: 'movie.name',
                 cellTemplate: '<div class="ui-grid-cell-contents"><a ui-sref="movie({id: row.entity.movie._id})">{{row.entity.movie.name}}</a></div>',
+            },
+            {
+                name: 'Цена',
+                field: 'cost',
+                cellTemplate: '<div class="ui-grid-cell-contents">{{row.entity.cost || 0}} BYN</div>',
             }
         ];
 

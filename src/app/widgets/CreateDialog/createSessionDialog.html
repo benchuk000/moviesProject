@@ -56,16 +56,22 @@
                     </div>
                 </div>
 
-                <div>
+                <div layout="column" layout-align="center center">
                     <md-input-container>
                         <label>Фильм</label>
-                            <md-select ng-model="dialogCtrl.data.movie._id">
-                                <md-option><em>None</em></md-option>
-                                <md-option ng-repeat="movie in dialogCtrl.movies"
-                                           ng-value="movie._id">
-                                    {{movie.name}}
-                                </md-option>
+                        <md-select ng-model="dialogCtrl.data.movie._id">
+                            <md-option><em>None</em></md-option>
+                            <md-option ng-repeat="movie in dialogCtrl.movies"
+                                       ng-value="movie._id">
+                                {{movie.name}}
+                            </md-option>
                         </md-select>
+                    </md-input-container>
+                    <md-input-container>
+                        <label>Цена (BYN)</label>
+                        <input type="number" required
+                               ng-model="dialogCtrl.data.cost"
+                               ng-pattern="/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/">
                     </md-input-container>
                 </div>
             <div>

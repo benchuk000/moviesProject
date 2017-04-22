@@ -1,0 +1,62 @@
+<div class="order">
+    <div class="breadcrumbs-wrapper" layout="center center">
+        <div class="breadcrumb">
+            Билеты
+        </div>
+        <div class="breadcrumb">
+            Места
+        </div>
+        <div class="breadcrumb">
+            Корзина
+        </div>
+        <div class="breadcrumb">
+            Готовый
+        </div>
+    </div>
+
+    <div class="card-like info-wrapper">
+        <div class="logo-wrapper">
+            <img src="{{order.session.movie.avatarUrl}}" />
+        </div>
+
+        <div class="info">
+            <div>
+                <h2 class="title"
+                    ui-sref="movie({id: order.session.movie._id})">
+                    {{order.session.movie.name}}
+                </h2>
+            </div>
+
+            <div class="data">
+                <div>
+                    Дата выхода: {{order.session.movie.releaseDate}}
+                </div>
+                <div>
+                    Режисер: {{order.session.movie.author}}
+                </div>
+                <div>
+                    Жанр: {{order.session.movie.genre}}
+                </div>
+                <div>
+                    Начало сеанса: {{order.session.startDate | dateWithTime}}
+                </div>
+                <div>
+                    Конец сеанса: {{order.session.endDate | dateWithTime}}
+                </div>
+                <div>
+                    Цена билета: {{order.session.cost || 0}} BYN
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <md-input-container>
+            <label>Количество билетов</label>
+            <md-select ng-model="order.ticketsCount">
+              <md-option ng-value="value" ng-repeat="value in [1,2,3]">{{ value }}</md-option>
+            </md-select>
+        </md-input-container>
+        <md-button class="md-raised md-primary">Продолжить заказ билетов</md-button>
+    </div>
+</div>

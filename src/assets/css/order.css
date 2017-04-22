@@ -1,0 +1,37 @@
+.order {
+    width: 1250px;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.order .card-like {
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px 0;
+}
+
+.order .info-wrapper {
+    width: inherit;
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.order .info-wrapper .logo-wrapper {
+    flex: 20;
+}
+
+.order .info-wrapper .logo-wrapper img {
+    height: 320px;
+}
+
+.order .info-wrapper .info {
+    flex: 70;
+}
+
+.order .info-wrapper .info .data div {
+    margin: 10px 0;
+}

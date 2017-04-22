@@ -29,7 +29,8 @@
 
             <div class="sessions-wrapper">
                 <div class="session"
-                     ng-repeat="session in preview.movie.sessions">
+                     ng-repeat="session in preview.movie.sessions"
+                     ui-sref="order({sessionID: session._id})">
                     {{session.startDate | timeOnly}}
                 </div>
             </div>
