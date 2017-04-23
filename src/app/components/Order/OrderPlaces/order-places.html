@@ -1,0 +1,20 @@
+<div class="places card-like">
+    <div class="row"
+         layout="row" layout-align="center center"
+         ng-repeat="row in order.places">
+        <div class="row-number" layout="column" layout-align="center center">
+            {{$index + 1}}
+        </div>
+        <div class="place"
+             layout="column" layout-align="center center"
+             ng-repeat="place in row"
+             ng-click="order.selectPlaces(place)"
+             ng-class="{selected: order.isPlaceSelected(place)}"
+             ng-disabled="order.isPlaceBusy(place)">
+            {{place.placeNumber + 1}}
+        </div>
+        <div class="row-number" layout="column" layout-align="center center">
+            {{$index + 1}}
+        </div>
+    </div>
+</div>

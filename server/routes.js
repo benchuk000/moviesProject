@@ -39,4 +39,14 @@ router.post('/session', session.createSession);
 router.put('/session/:id', session.updateSessionById);
 router.delete('/session/:id', session.deleteSessionById);
 
+const order = require('./controllers/order');
+router.get('/order', order.getOrders);
+router.get('/order/:id', order.getOrderById);
+router.post('/order', order.createOrder);
+router.put('/order/:id', order.updateOrderById);
+router.delete('/order/:id', order.deleteOrderById);
+
+const place = require('./controllers/place');
+router.get('/place', place.getPlaces);
+
 module.exports = router;

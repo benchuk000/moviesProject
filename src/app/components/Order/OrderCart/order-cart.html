@@ -1,0 +1,36 @@
+<div class="cart card-like">
+    <div class="logo-wrapper">
+        <img src="{{order.session.movie.avatarUrl}}" />
+    </div>
+
+    <div class="info">
+        <div>
+            <span>Фильм:</span>
+            <h2 class="title"
+                ui-sref="movie({id: order.session.movie._id})">
+                {{order.session.movie.name}}
+            </h2>
+        </div>
+
+        <div class="data">
+            <div>
+                Жанр: {{order.session.movie.genre}}
+            </div>
+            <div>
+                Начало сеанса: {{order.session.startDate | dateWithTime}}
+            </div>
+            <div>
+                Конец сеанса: {{order.session.endDate | dateWithTime}}
+            </div>
+            <div>
+                Цена билета: {{order.session.cost || 0}} BYN
+            </div>
+            <div>
+                Место: {{order.selectedPlaces[0].placeNumber + 1}}
+            </div>
+            <div>
+                Ряд: {{order.selectedPlaces[0].rowNumber + 1}}
+            </div>
+        </div>
+    </div>
+</div>

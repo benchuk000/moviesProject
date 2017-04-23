@@ -1,0 +1,26 @@
+.places .row {
+    margin: 10px;
+}
+
+.places .place, .places .row-number {
+    height: 70px;
+    width: 50px;
+    border-radius: 5px;
+    margin: 0 5px;
+}
+
+.places .row-number {
+    border: 1px solid black;
+}
+
+.places .place {
+    background-color: #29d229;
+}
+
+.places .place[disabled] {
+    background-color: #ff3838;
+}
+
+.places .place.selected {
+    background-color: #efef0a;
+}

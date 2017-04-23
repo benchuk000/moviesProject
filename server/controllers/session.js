@@ -22,6 +22,7 @@ exports.getSessions = (req, res, next) => {
     Session
         .find(criteria)
         .populate('movie')
+        .populate('place')
         .exec(function(err, sessions) {
             if (err) {
                 next(err);
@@ -36,6 +37,7 @@ exports.getSessionById = (req, res, next) => {
 
     Session.find({ _id: id })
         .populate('movie')
+        .populate('place')
         .exec((err, user) => {
             if (err) {
                 return next(err);
@@ -96,6 +98,7 @@ exports.createSession = (req, res, next) => {
                 movie.save((err) => {
                     Session.findOne({ _id: session._id })
                         .populate('movie')
+                        .populate('place')
                         .exec(function(err, session) {
                             if (err) {
                                 return next(err);
