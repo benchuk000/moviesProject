@@ -86,6 +86,8 @@ angular.module('bm')
             switch (entity) {
                 case 'movie':
                     return showMovieEditDialog(entity, data);
+                case 'session':
+                    return showSessionEditDialog(entity, data);
             }
         }
 
@@ -93,6 +95,19 @@ angular.module('bm')
             return $mdDialog.show({
                 controller: 'EditMovieDialogController as dialogCtrl',
                 templateUrl: './app/widgets/CreateDialog/createMovieDialog.html',
+                parent: angular.element(document.body),
+                clickOutsideToClose:true,
+                locals: {
+                    entity: entity,
+                    data: data
+                }
+            });
+        }
+
+        function showSessionEditDialog (entity, data) {
+            return $mdDialog.show({
+                controller: 'EditSessionDialogController as dialogCtrl',
+                templateUrl: './app/widgets/CreateDialog/createSessionDialog.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose:true,
                 locals: {

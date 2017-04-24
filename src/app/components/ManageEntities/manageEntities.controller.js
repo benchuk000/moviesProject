@@ -1,10 +1,10 @@
 angular.module('bm')
     .controller('ManageEntitiesController', ['$scope', '$rootScope', 'EntityDataList', 'ManageDialogFactory', '$state',
     function ($scope, $rootScope,  EntityDataList, ManageDialogFactory, $state) {
+        var self = this;
 
         angular.extend(this, {
             init: function () {
-                var self = this;
                 this.entity = $state.params.entityType;
 
                 $scope.$watch(
@@ -75,11 +75,11 @@ angular.module('bm')
                 ManageDialogFactory.showEditDialog(this.entity, this.getSelectesEntity())
                     .then(
                         function(updatedEntity) {
-                            var entity = this.entities.find(function (entity) {
-                                return entity._id === updatedEntity._id;
+                            self.entities = self.entities.map(function (entity) {
+                                return entity._id === updatedEntity._id ? updatedEntity : entity;
                             });
 
-                            entity = updatedEntity;
+                            self.gridOptions.data = self.entities;
                         }, function() {
                             // TODO: add logic here
                         });
@@ -101,7 +101,7 @@ angular.module('bm')
                                             var entity = self.entities.find(function (entity) {
                                                 return entity._id === id;
                                             })
-                                            self.entities.splice(self.entities.indexOf(entity));
+                                            self.entities.splice(self.entities.indexOf(entity), 1);
 
                                             // TODO: add toast here
                                         },

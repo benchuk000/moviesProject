@@ -50,31 +50,37 @@ exports.getSessionById = (req, res, next) => {
 exports.updateSessionById = (req, res, next) => {
     let body = req.body.data;
 
-    if (!body.name) {
-        return res.status(400).end(errorMessage.BAD_REQUEST);
-    }
-
-    Session.findOne({ _id: req.params.id }, function (err, session) {
-        if (err) {
-            return next(err);
-        }
-
-        if (!session) {
-            return res.status(404).send(errorMessage.NO_SUCH_USER);
-        }
-
-        session.startDate = body.startDate;
-        session.endDate = body.endDate;
-        session.movie = body.movie;
-
-        session.save(function (err) {
+    Session.findOne({ _id: req.params.id })
+        .exec(function (err, session) {
             if (err) {
                 return next(err);
             }
 
-            res.status(200).send(session);
+            if (!session) {
+                return res.status(404).send(errorMessage.NO_SUCH_USER);
+            }
+
+            session.startDate = body.startDate;
+            session.endDate = body.endDate;
+            session.movie = body.movie;
+            session.cost = body.cost;
+
+            session.save(function (err, session) {
+                if (err) {
+                    return next(err);
+                }
+
+                Session.findOne(session)
+                    .populate('movie')
+                    .exec((err, session) => {
+                        if (err) {
+                            return next(err);
+                        }
+
+                        res.status(200).send(session);
+                    });
+            });
         });
-    });
 }
 
 exports.createSession = (req, res, next) => {
