@@ -8,6 +8,10 @@ angular.module('bm')
             createDialogTemplateUrl: EntityDataList.getDataList(entity).createDialogTemplateUrl,
             data:                    data,
 
+            init: function () {
+                data.releaseDate = new Date(data.releaseDate);
+            },
+
             cancel: function () {
                 $mdDialog.cancel();
             },
@@ -36,4 +40,6 @@ angular.module('bm')
                     )
             }
         });
+
+        this.init();
     }]);
