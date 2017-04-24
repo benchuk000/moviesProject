@@ -9,15 +9,24 @@ angular.module('bm')
             breadcrumbs: [
                 {
                     title: 'Билеты',
-                    viewSrc: './app/components/Order/OrderPreview/order-preview.html'
+                    viewSrc: './app/components/Order/OrderPreview/order-preview.html',
+                    isNextDisabled: function () {
+                        return false;
+                    }
                 },
                 {
                     title: 'Места',
-                    viewSrc: './app/components/Order/OrderPlaces/order-places.html'
+                    viewSrc: './app/components/Order/OrderPlaces/order-places.html',
+                    isNextDisabled: function () {
+                        return self.selectedPlaces.length === 0;
+                    }
                 },
                 {
                     title: 'Корзина',
-                    viewSrc: './app/components/Order/OrderCart/order-cart.html'
+                    viewSrc: './app/components/Order/OrderCart/order-cart.html',
+                    isNextDisabled: function () {
+                        return false;
+                    }
                 },
                 {
                     title: 'Готовый',
@@ -65,6 +74,10 @@ angular.module('bm')
                 }
             },
 
+            isPrevStepDisabled: function () {
+                return this.breadcrumbs.indexOf(this.currentStep) === 0;
+            },
+
             switchToPrevStep: function () {
                 var stepIndex = this.breadcrumbs.indexOf(this.currentStep);
                 this.currentStep = this.breadcrumbs[stepIndex - 1];
@@ -102,6 +115,10 @@ angular.module('bm')
                     });
 
                 return deferred.promise;
+            },
+
+            isLastStepActive() {
+                return this.breadcrumbs.indexOf(this.currentStep) === this.breadcrumbs.length - 1;
             }
         });
 

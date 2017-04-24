@@ -1,20 +1,17 @@
 <div class="order">
-    <div class="breadcrumbs-wrapper" layout="center center">
-        <div class="breadcrumb"
-             ng-repeat="breadcrumb in order.breadcrumbs">
-            {{breadcrumb.title}}
-        </div>
-    </div>
-
     <div ng-include="order.currentStep.viewSrc"></div>
 
     <div>
         <md-button class="md-raised"
-                   ng-click="order.switchToPrevStep()">
+                   ng-click="order.switchToPrevStep()"
+                   ng-disabled="order.isPrevStepDisabled()"
+                   ng-if="!order.isLastStepActive()">
             Назад
         </md-button>
         <md-button class="md-raised md-primary"
-                   ng-click="order.switchToNextStep()">
+                   ng-click="order.switchToNextStep()"
+                   ng-disabled="order.currentStep.isNextDisabled()"
+                   ng-if="!order.isLastStepActive()">
             Продолжить заказ билетов
         </md-button>
     </div>
