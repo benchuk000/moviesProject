@@ -11,8 +11,7 @@ const userSchema = new mongoose.Schema({
     login:       { type: String, unique: true, trim: true },
     email:       { type: String },
     password:    { type: String },
-    isAdmin:     { type: Boolean, default: false },
-    tickets:     [ { type: mongoose.Schema.Types.ObjectId, ref: 'Ticket', unique: true } ]
+    isAdmin:     { type: Boolean, default: false }
 });
 
 userSchema.pre('save',function (next) {

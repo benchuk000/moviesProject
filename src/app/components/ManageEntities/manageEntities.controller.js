@@ -72,6 +72,11 @@ angular.module('bm')
             },
 
             edit: function () {
+                if (this.entity === 'user') {
+                    $state.go('user', { id: this.getSelectesEntity()._id});
+                    return;
+                }
+
                 ManageDialogFactory.showEditDialog(this.entity, this.getSelectesEntity())
                     .then(
                         function(updatedEntity) {

@@ -62,14 +62,6 @@ angular.module('bm')
                 controllerAs: 'entity',
                 controller:   'ManageEntitiesController'
             })
-            .state('profile', {
-                parent:       'in.base',
-                url:          'profile',
-
-                templateUrl:  'app/components/Profile/profile.html',
-                controllerAs: 'profile',
-                controller:   'ProfileController'
-            })
             .state('contact', {
                 parent:       'in.base',
                 url:          'contact',
@@ -85,6 +77,14 @@ angular.module('bm')
                 controllerAs: 'order',
                 controller:   'OrderController'
 
+            })
+            .state('user', {
+                parent:       'in.base',
+                url:          'user/{id}',
+
+                templateUrl:  'app/components/User/user.html',
+                controllerAs: 'user',
+                controller:   'UserController'
             });
 
 

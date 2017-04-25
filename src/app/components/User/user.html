@@ -2,7 +2,7 @@
     <table class="signUp">
         <tr>
             <td colspan="2" class="sign">
-                Профиль
+                {{user.data.isAdmin ? 'Администратор' : 'Пользователь'}}
             </td>
         </tr>
         <tr>
@@ -10,7 +10,7 @@
                 Имя:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="profile.userData.username"/>
+                <input type="text" class="signUpInput" ng-model="user.data.username"/>
             </td>
         </tr>
         <tr>
@@ -18,7 +18,7 @@
                 Фамилия:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="profile.userData.usersurname"/>
+                <input type="text" class="signUpInput" ng-model="user.data.usersurname"/>
             </td>
         </tr>
         <tr>
@@ -26,7 +26,7 @@
                 Номер паспорта:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="profile.userData.passport"/>
+                <input type="text" class="signUpInput" ng-model="user.data.passport"/>
             </td>
         </tr>
         <tr>
@@ -34,7 +34,7 @@
                 Логин:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="profile.userData.login"/>
+                <input type="text" class="signUpInput" ng-model="user.data.login"/>
             </td>
         </tr>
         </tr>
@@ -44,22 +44,14 @@
                 e-mail:
             </td>
             <td>
-                <input type="text" class="signUpInput" ng-model="profile.userData.email"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Пароль:
-            </td>
-            <td>
-                <input type="password" class="signUpInput" ng-model="profile.userData.password"/>
+                <input type="text" class="signUpInput" ng-model="user.data.email"/>
             </td>
         </tr>
         <tr>
 
             <td colspan="2">
-                <md-button class="md-raised md-primary" ng-click="profile.signup()">
-              Сохранить
+                <md-button class="md-raised md-primary" ng-click="user.update()">
+                    Изменить
                 </md-button>
             </td>
         </tr>
@@ -67,4 +59,7 @@
 
     </table>
 
+    <div class="orders">
+        orders
+    </div>
 </div>
