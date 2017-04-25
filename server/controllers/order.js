@@ -7,11 +7,16 @@ const errorMessage = require('../consts/errors');
 const sendMail     = require('../helpers/mail');
 
 exports.getOrders = (req, res, next) => {
+    let criteria = { user: req.query.user };
+
     Order
-        .find()
-        .populate('session')
+        .find(criteria)
         .populate('user')
         .populate('place')
+        .populate({
+            path: 'session',
+            populate: { path: 'movie' }
+        })
         .exec(function(err, orders) {
             if (err) {
                 next(err);
@@ -25,9 +30,12 @@ exports.getOrderById = (req, res, next) => {
     let id = req.params.id;
 
     Order.find({ _id: id })
-        .populate('session')
         .populate('user')
         .populate('place')
+        .populate({
+            path: 'session',
+            populate: { path: 'movie' }
+        })
         .exec((err, user) => {
             if (err) {
                 return next(err);
@@ -132,12 +140,28 @@ exports.deleteOrderById = (req, res, next) => {
         return res.status(400).end(errorMessage.BAD_REQUEST);
     }
 
-    Order.remove({ _id: id }, function (err) {
-        if (!err) {
-            res.status(200).send('Order has been deleted');
-        }
-        else {
-            res.status(404).send('Order has been not found');
-        }
-    });
+    Order.findOne({ _id: id })
+        .populate('session')
+        .exec((err, order) => {
+            order.remove({ _id: id }, function (err) {
+                if (err) {
+                    res.status(200).send('Order has not been deleted');
+                }
+                else {
+                    Session.findOne({ _id: order.session.id })
+                        .exec((err, session) => {
+                            session.selectedPlaces.splice(session.selectedPlaces.indexOf(order.place), 1);
+
+                            session.save((err) => {
+                                if (err) {
+                                    res.status(200).send('Order has not been deleted');
+                                }
+                                else {
+                                    res.status(200).send('Order has been deleted');
+                                }
+                            });
+                        });
+                }
+            });
+        });
 }

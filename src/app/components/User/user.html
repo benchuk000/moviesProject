@@ -1,65 +1,70 @@
-<div class="signUpwrapper">
-    <table class="signUp">
-        <tr>
-            <td colspan="2" class="sign">
-                {{user.data.isAdmin ? 'Администратор' : 'Пользователь'}}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Имя:
-            </td>
-            <td>
+<div class="user">
+    <div class="user__info">
+        <div class="user__info__field">
+            {{user.data.isAdmin ? 'Администратор' : 'Пользователь'}}
+        </div>
+        <div class="user__info__field">
+            <md-input-container>
+                <label>Имя</label>
                 <input type="text" class="signUpInput" ng-model="user.data.username"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Фамилия:
-            </td>
-            <td>
+            </md-input-container>
+        </div>
+        <div class="user__info__field">
+            <md-input-container>
+                <label>Фамилия</label>
                 <input type="text" class="signUpInput" ng-model="user.data.usersurname"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Номер паспорта:
-            </td>
-            <td>
-                <input type="text" class="signUpInput" ng-model="user.data.passport"/>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                Логин:
-            </td>
-            <td>
+            </md-input-container>
+        </div>
+        <div class="user__info__field">
+            <md-input-container>
+                <label>Логин</label>
                 <input type="text" class="signUpInput" ng-model="user.data.login"/>
-            </td>
-        </tr>
-        </tr>
-
-        <tr>
-            <td>
-                e-mail:
-            </td>
-            <td>
+            </md-input-container>
+        </div>
+        <div class="user__info__field">
+            <md-input-container>
+                <label>Почтовый ящик</label>
                 <input type="text" class="signUpInput" ng-model="user.data.email"/>
-            </td>
-        </tr>
-        <tr>
+            </md-input-container>
+        </div>
+        <div class="user__info__field">
+            <md-input-container>
+                <label>Номер паспорта</label>
+                <input type="text" class="signUpInput" ng-model="user.data.passport"/>
+            </md-input-container>
+        </div>
 
-            <td colspan="2">
-                <md-button class="md-raised md-primary" ng-click="user.update()">
-                    Изменить
+        <div class="user__info__field">
+            <md-button class="md-raised md-primary" ng-click="user.update()">
+                Изменить
+            </md-button>
+        </div>
+    </div>
+
+    <div class="user__orders">
+        <div class="user__orders__title" layout="row" layaout-align="start center">
+            Заказы
+        </div>
+        <div layout="row" layaout-align="start center"
+             ng-if="!user.orders.length">
+            У вас нет заказов
+        </div>
+        <div class="user__order" layout="row" layaout-align="start center"
+             ng-repeat="order in user.orders">
+            <div class="user__order__date">
+                {{order.session.startDate | dateWithTime}}
+            </div>
+            <div class="user__order__movie-name">
+                <a ui-sref="movie({id: order.session.movie._id})">{{order.session.movie.name}}</a>
+            </div>
+            <div class="user__order__place">
+                Место: {{order.place.placeNumber + 1}} Ряд: {{order.place.rowNumber + 1}}
+            </div>
+            <div>
+                <md-button class="md-icon-button" ng-click="user.deleteOrder(order._id)">
+                    <md-icon md-font-set="material-icons">delete_forever</md-icon>
                 </md-button>
-            </td>
-        </tr>
-
-
-    </table>
-
-    <div class="orders">
-        orders
+            </div>
+        </div>
     </div>
 </div>

@@ -1,0 +1,39 @@
+.user {
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    width: 800px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.user .user__info {
+    flex: 30;
+}
+
+.user .user__info .user__info__field {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user .user__orders {
+    flex: 40;
+}
+
+.user .user__orders .user__orders__title {
+    padding-left: 7px;
+}
+
+.user .user__orders .user__order {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 7px;
+    cursor: pointer;
+}
+
+.user .user__orders .user__order:hover {
+    background-color: #efefef;
+}
