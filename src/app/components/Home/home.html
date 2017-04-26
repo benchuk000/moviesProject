@@ -1,15 +1,26 @@
 <div class="content-wrapper">
     <div class="content-main">
         <div class="filter-wrapper">
-            <div class="filter">
-                Дата
-            </div>
-            <div class="filter">
-                Время
-            </div>
-            <div class="filter">
-                Жанр
-            </div>
+            <md-input-container class="filter">
+                <md-datepicker md-open-on-focus
+                               ng-model="home.filter.date"
+                               md-placeholder="Дата"
+                               md-min-date="home.today"
+                ></md-datepicker>
+            </md-input-container>
+            <md-input-container class="filter">
+                <input mdc-datetime-picker date="false"
+                       placeholder="Время"
+                       ng-disabled="!home.filter.date"
+                       ng-model="home.filter.time"
+                       min-date="home.filter.date">
+            </md-input-container>
+            <md-input-container class="filter">
+              <md-select ng-model="home.filter.genre" placeholder="Жанр">
+                <md-option ng-value="">Все</md-option>
+                <md-option ng-value="genre" ng-repeat="genre in home.genres">{{genre}}</md-option>
+              </md-select>
+            </md-input-container>
         </div>
 
         <div class="logo-panel">
@@ -29,7 +40,11 @@
             <div class="border-line"></div>
         </div>
         <div class="content">
-            <movie-preview ng-repeat="movie in home.movies" movie="movie"></movie-preview>
+            <movie-preview ng-repeat="movie in home.movies" movie="movie" date="home.filter.date"></movie-preview>
+            <div class="content__no-content"
+                 ng-if="!home.movies.length">
+                Соответствующих критериям фильмов нет
+            </div>
         </div>
     </div>
 

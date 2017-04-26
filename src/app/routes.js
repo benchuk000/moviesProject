@@ -23,7 +23,7 @@ angular.module('bm')
                         templateUrl:  'app/components/Subheader/subheader.html',
                     },
                     content: {
-                        template:     '<ui-view/>'
+                        template:     '<div style="width: 100%;" ui-view></div>'
                     }
                 }
             })

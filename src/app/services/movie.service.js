@@ -11,10 +11,12 @@ angular.module('bm')
                 getTopMovies:        getTopMovies
             }
 
-            function getMovies() {
+            function getMovies(params) {
                 var deferred = $q.defer();
 
-                $http.get('movie')
+                $http.get('movie', {
+                    params: params
+                })
                     .then(
                         function(res) {
                             deferred.resolve(res.data)

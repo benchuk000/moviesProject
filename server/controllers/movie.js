@@ -6,9 +6,17 @@ const fsp          = require('fs-promise');
 const path         = require('path');
 
 exports.getMovies = (req, res, next) => {
-    let criteria = req.query.criteria
-        ? { $or: [{ name: { $regex : `${criteria}`} }, { author: { $regex : `${criteria}`} }] }
-        : {};
+    let criteria = {};
+    if (req.query.genre) {
+        criteria.genre = req.query.genre;
+    }
+    let date;
+    if (req.query.date) {
+        date = new Date(req.query.date);
+    }
+    if (req.query.time) {
+        date = new Date(req.query.time);
+    }
 
     Movie
         .find(criteria)
@@ -17,6 +25,14 @@ exports.getMovies = (req, res, next) => {
             if (err) {
                 next(err);
             }
+
+            movies = movies.filter(movie => {
+                let sessions = movie.sessions.filter(session => {
+                    return date ? (new Date(session.startDate)) > date : true;
+                });
+
+                return date ? sessions.length : true;
+            });
 
             res.status(200).send(movies);
         });
