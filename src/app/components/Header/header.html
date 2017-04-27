@@ -2,10 +2,23 @@
     <div class="header-content">
         <div class="search-wrapper">
             <div class="form-search">
-                <input type="text" class="searchInput" placeholder="Поиск фильмов" value="" />
-                <button class="searchButton">
-            &#128269;
-          </button>
+                <md-autocomplete
+                  md-no-cache="true"
+                  md-selected-item="ctrl.selectedMovie"
+                  md-search-text-change="header.makeSearch()"
+                  md-search-text="header.searchName"
+                  md-selected-item-change="header.goToMovie(ctrl.selectedMovie._id)"
+                  md-items="movie in header.movies"
+                  md-item-text="movie.name"
+                  md-min-length="0"
+                  placeholder="Имя фильма">
+                <md-item-template>
+                  <span md-highlight-text="header.searchName" md-highlight-flags="^i">{{movie.name}}</span>
+                </md-item-template>
+                <md-not-found>
+                    Такого фильма нет
+                </md-not-found>
+              </md-autocomplete>
             </div>
         </div>
         <div class="authorizationButton">
@@ -17,13 +30,13 @@
                     <md-menu-item>
                         <md-button ui-sref="user({id: currentUser._id})">Профиль</md-button>
                     </md-menu-item>
-                    <md-menu-item>
+                    <md-menu-item ng-if="currentUser.isAdmin">
                         <md-button ui-sref="manage-entities({entityType:'user'})">Управление пользователями</md-button>
                     </md-menu-item>
-                    <md-menu-item>
+                    <md-menu-item ng-if="currentUser.isAdmin">
                         <md-button ui-sref="manage-entities({entityType:'movie'})">Управление фильмами</md-button>
                     </md-menu-item>
-                    <md-menu-item>
+                    <md-menu-item ng-if="currentUser.isAdmin">
                         <md-button ui-sref="manage-entities({entityType:'session'})">Управление сеансами</md-button>
                     </md-menu-item>
                     <md-menu-item>

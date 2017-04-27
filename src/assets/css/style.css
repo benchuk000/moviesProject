@@ -33,13 +33,9 @@ header{
     display: flex;
     padding: 4px;
 }
-.searchInput{
-  width: 150px;
-  height: 25px;
-  color: #333;
-  background-color: #f4f4f4;
-  border: 1px solid #dcdcdc;
-  border-radius: 1px;
+
+.form-search md-autocomplete {
+    width: 300px;
 }
 
 .header {

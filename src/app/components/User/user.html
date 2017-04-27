@@ -6,36 +6,42 @@
         <div class="user__info__field">
             <md-input-container>
                 <label>Имя</label>
-                <input type="text" class="signUpInput" ng-model="user.data.username"/>
+                <input type="text" class="signUpInput" ng-model="user.data.username"
+                    ng-disabled="user.data._id !== currentUser._id && !currentUser.isAdmin"/>
             </md-input-container>
         </div>
         <div class="user__info__field">
             <md-input-container>
                 <label>Фамилия</label>
-                <input type="text" class="signUpInput" ng-model="user.data.usersurname"/>
+                <input type="text" class="signUpInput" ng-model="user.data.usersurname"
+                    ng-disabled="user.data._id !== currentUser._id && !currentUser.isAdmin"/>
             </md-input-container>
         </div>
         <div class="user__info__field">
             <md-input-container>
                 <label>Логин</label>
-                <input type="text" class="signUpInput" ng-model="user.data.login"/>
+                <input type="text" class="signUpInput" ng-model="user.data.login"
+                    ng-disabled="user.data._id !== currentUser._id && !currentUser.isAdmin"/>
             </md-input-container>
         </div>
         <div class="user__info__field">
             <md-input-container>
                 <label>Почтовый ящик</label>
-                <input type="text" class="signUpInput" ng-model="user.data.email"/>
+                <input type="text" class="signUpInput" ng-model="user.data.email"
+                    ng-disabled="user.data._id !== currentUser._id && !currentUser.isAdmin"/>
             </md-input-container>
         </div>
         <div class="user__info__field">
             <md-input-container>
                 <label>Номер паспорта</label>
-                <input type="text" class="signUpInput" ng-model="user.data.passport"/>
+                <input type="text" class="signUpInput" ng-model="user.data.passport"
+                    ng-disabled="user.data._id !== currentUser._id && !currentUser.isAdmin"/>
             </md-input-container>
         </div>
 
         <div class="user__info__field">
-            <md-button class="md-raised md-primary" ng-click="user.update()">
+            <md-button class="md-raised md-primary" ng-click="user.update()"
+                ng-if="user.data._id === currentUser._id || currentUser.isAdmin">
                 Изменить
             </md-button>
         </div>
@@ -60,7 +66,7 @@
             <div class="user__order__place">
                 Место: {{order.place.placeNumber + 1}} Ряд: {{order.place.rowNumber + 1}}
             </div>
-            <div>
+            <div ng-show="user.data._id === currentUser._id || currentUser.isAdmin">
                 <md-button class="md-icon-button" ng-click="user.deleteOrder(order._id)">
                     <md-icon md-font-set="material-icons">delete_forever</md-icon>
                 </md-button>

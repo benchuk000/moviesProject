@@ -1,9 +1,12 @@
 angular.module('bm')
-    .controller('HeaderController', ['$rootScope', 'AuthService', HeaderController]);
+    .controller('HeaderController', ['$rootScope', 'AuthService', 'MovieService', '$state', HeaderController]);
 
-    function HeaderController ($rootScope, AuthService) {
+    function HeaderController ($rootScope, AuthService, MovieService, $state) {
+        var self = this;
+
         angular.extend(this, {
             init: function () {
+                this.movies = [];
                 $rootScope.currentUser = AuthService.getUser();
             },
 
@@ -15,7 +18,6 @@ angular.module('bm')
                         },
                         function (message) {
                             alert(message);
-                            // toastr.error(message);
                         }
                     );
             },
@@ -23,6 +25,24 @@ angular.module('bm')
             logOut: function () {
                 this.userData = {};
                 AuthService.logOut();
+            },
+
+            makeSearch: function () {
+                if (this.searchName.length) {
+                    MovieService.getMoviesByCriteria(this.searchName)
+                        .then(
+                            function (movies) {
+                                self.movies = movies;
+                            },
+                            function () {
+
+                            }
+                        );
+                }
+            },
+
+            goToMovie: function (id) {
+                $state.go('movie', { id: id});
             }
         });
 
