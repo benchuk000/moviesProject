@@ -13,7 +13,7 @@
 
         <div class="data">
             <div>
-                Дата выхода: {{order.session.movie.releaseDate}}
+                Дата выхода: {{order.session.movie.releaseDate | dateOnly}}
             </div>
             <div>
                 Режисер: {{order.session.movie.author}}

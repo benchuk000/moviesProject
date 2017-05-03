@@ -28,7 +28,7 @@ exports.getMovies = (req, res, next) => {
 
             movies = movies.filter(movie => {
                 let sessions = movie.sessions.filter(session => {
-                    return date ? (new Date(session.startDate)) > date : true;
+                    return date ? (new Date(session.startDate)) >= date : true;
                 });
 
                 return date ? sessions.length : true;

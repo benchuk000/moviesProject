@@ -61,7 +61,12 @@ exports.getUsers = (req, res, next) =>
 exports.getUserById = (req, res, next) => {
     let id = req.params.id;
 
-    User.find( { _id: id }).exec((err, user) => {
+    User.find( { _id: id })
+    .populate({
+        path: 'session',
+        populate: { path: 'movie' }
+    })
+    .exec((err, user) => {
         if (err) {
             return next(err);
         }

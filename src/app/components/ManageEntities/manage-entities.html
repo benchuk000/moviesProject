@@ -14,12 +14,13 @@
             </md-nav-bar>
         </div>
         <div class="create-button-wrapper">
-            <md-button class="md-raised md-primary"
+            <md-button ng-hide="entity.entity === 'user'"
+                       class="md-raised md-primary"
                        ng-click="entity.createEntity()">
-                       Create
+                         Создать
             </md-button>
-            <md-button ng-disabled="!entity.getSelectesEntity()" ng-click="entity.edit()">Edit</md-button>
-            <md-button ng-disabled="!entity.getSelectesEntity()" ng-click="entity.remove()">Delete</md-button>
+            <md-button ng-disabled="!entity.getSelectesEntity()" ng-click="entity.edit()">Редактировать</md-button>
+            <md-button ng-disabled="!entity.getSelectesEntity()" ng-click="entity.remove()">Удалить</md-button>
         </div>
     </div>
 

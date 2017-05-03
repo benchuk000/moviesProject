@@ -25,6 +25,7 @@ angular.module('bm')
             logOut: function () {
                 this.userData = {};
                 AuthService.logOut();
+                $state.go('home');
             },
 
             makeSearch: function () {
